@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
 import butterknife.bindView
+import com.hosshan.android.godecparents.R
+import com.hosshan.android.godecparents.component.fragment.TopFragment
 
 /**
  * Created by shunhosaka on 15/09/05.
