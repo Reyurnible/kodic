@@ -1,8 +1,8 @@
-# GodecParent
+# GodicParent
 
 ## About
-CodecのAndroidアプリケーション。
-KotlinとRxを使用したアプリ。
+CodicのAndroidアプリケーション。
+[Codic APIリファレンス](https://codic.jp/docs/api)
 
 ## Pattern
 
