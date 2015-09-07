@@ -5,7 +5,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import com.hosshan.android.godicparents.R
+=======
+import com.hosshan.android.godecparents.R
+import kotlin.platform.platformStatic
+>>>>>>> BaseAcitivityを追加
 
 
 /**
@@ -13,12 +18,14 @@ import com.hosshan.android.godicparents.R
  */
 public class TopFragment : Fragment() {
 
-    /*public fun newInstance(): TopFragment {
-        val fragment: TopFragment = TopFragment()
-        val args: Bundle = Bundle()
-        fragment.setArguments(args)
-        return fragment
-    }*/
+    companion object {
+        platformStatic public fun createFragment(): TopFragment {
+            val fragment: TopFragment = TopFragment()
+            val args: Bundle = Bundle()
+            fragment.setArguments(args)
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

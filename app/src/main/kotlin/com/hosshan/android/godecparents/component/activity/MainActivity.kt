@@ -13,15 +13,14 @@ import com.hosshan.android.godicparents.component.fragment.TopFragment
 /**
  * Created by shunhosaka on 15/09/05.
  */
-public class MainActivity : AppCompatActivity() {
+public class MainActivity : BaseActivity() {
 
     val toolbar : Toolbar by bindView(R.id.main_toolbar)
-    val containerLayout : FrameLayout by bindView(R.id.main_layout_container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        setContentFragment(R.id.main_layout_container, TopFragment.createFragment())
     }
 }
