@@ -1,13 +1,12 @@
-package com.hosshan.android.godecparents.component.fragment
+package com.hosshan.android.godicparents.component.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hosshan.android.godecparents.R
+import com.hosshan.android.godicparents.R
 import kotlin.platform.platformStatic
-
 
 /**
  * Created by shunhosaka on 15/09/06.

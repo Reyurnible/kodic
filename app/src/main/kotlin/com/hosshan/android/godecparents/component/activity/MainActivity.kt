@@ -1,12 +1,13 @@
-package com.hosshan.android.godecparents.component.activity
+package com.hosshan.android.godicparents.component.activity
 
 import android.os.Bundle
 import android.support.design.internal.NavigationMenuView
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
-import com.hosshan.android.godecparents.R
-import com.hosshan.android.godecparents.component.fragment.TopFragment
+import com.hosshan.android.godecparents.component.activity.BaseActivity
+import com.hosshan.android.godicparents.R
+import com.hosshan.android.godicparents.component.fragment.TopFragment
 
 /**
  * Created by shunhosaka on 15/09/05.

@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents;
+package com.hosshan.android.godicparents;
 
 import org.junit.Test;
 
