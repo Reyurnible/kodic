@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hosshan.android.godecparents.R
+import kotlin.platform.platformStatic
 
 
 /**
@@ -13,12 +14,14 @@ import com.hosshan.android.godecparents.R
  */
 public class TopFragment : Fragment() {
 
-    /*public fun newInstance(): TopFragment {
-        val fragment: TopFragment = TopFragment()
-        val args: Bundle = Bundle()
-        fragment.setArguments(args)
-        return fragment
-    }*/
+    companion object {
+        platformStatic public fun createFragment(): TopFragment {
+            val fragment: TopFragment = TopFragment()
+            val args: Bundle = Bundle()
+            fragment.setArguments(args)
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
