@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.component.activity
+package com.hosshan.android.godicparents.component.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
 import butterknife.bindView
-import com.hosshan.android.godecparents.R
-import com.hosshan.android.godecparents.component.fragment.TopFragment
+import com.hosshan.android.godicparents.R
+import com.hosshan.android.godicparents.component.fragment.TopFragment
 
 /**
  * Created by shunhosaka on 15/09/05.
