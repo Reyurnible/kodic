@@ -22,6 +22,6 @@ public class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setContentFragment(R.id.main_layout_container, TopFragment.createFragment())
+        setContentFragment(R.id.main_layout_container, TopFragment.newInstance())
     }
 }
