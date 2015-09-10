@@ -1,0 +1,22 @@
+<resources>
+    <!-- Text Size -->
+    <dimen name="text_size_xxlarge">25sp</dimen>
+    <dimen name="text_size_xlarge">21sp</dimen>
+    <dimen name="text_size_large">17sp</dimen>
+    <dimen name="text_size_medium">15sp</dimen>
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_xsmall">11sp</dimen>
+    <dimen name="text_size_diff_large_small">7sp</dimen>
+    <!-- Script -->
+    <dimen name="text_size_display_4">112sp</dimen>
+    <dimen name="text_size_display_3">56sp</dimen>
+    <dimen name="text_size_display_2">45sp</dimen>
+    <dimen name="text_size_display_1">34sp</dimen>
+    <dimen name="text_size_headline">25sp</dimen>
+    <dimen name="text_size_title">21sp</dimen>
+    <dimen name="text_size_subhead">17sp</dimen>
+    <dimen name="text_size_body">15sp</dimen>
+    <dimen name="text_size_caption">13sp</dimen>
+    <dimen name="text_size_button">15sp</dimen>
+
+</resources>
