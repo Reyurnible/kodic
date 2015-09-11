@@ -33,7 +33,7 @@ public class LoginFragment : Fragment() {
             val intent: Intent = Intent(getActivity(), javaClass<MainActivity>())
             startActivity(intent)
         }
-        
+
         return rootView
     }
 }
