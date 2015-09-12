@@ -11,7 +11,6 @@ import butterknife.bindView
 import com.hosshan.android.godecparents.component.activity.BaseActivity
 import com.hosshan.android.godecparents.component.fragment.ProjectListFragment
 import com.hosshan.android.godicparents.R
-import com.hosshan.android.godicparents.component.fragment.TopFragment
 import timber.log.Timber
 
 /**
@@ -37,8 +36,7 @@ public class MainActivity : BaseActivity() {
 
     private fun setToolbar() {
         setSupportActionBar(toolbar)
-        toolbar.setTitleTextColor(R.color.primary_text_inverse)
-        toolbar.setBackgroundColor(R.color.primary)
+        toolbar.setTitleTextColor(getResources().getColor(R.color.primary_text_inverse))
         toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
     }
 
@@ -77,4 +75,11 @@ public class MainActivity : BaseActivity() {
 
     }
 
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            return ;
+        }
+        super.onBackPressed()
+    }
 }
