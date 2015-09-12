@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.util
+package com.hosshan.android.godicparents.util
 
 import android.content.Context
 import android.net.Uri

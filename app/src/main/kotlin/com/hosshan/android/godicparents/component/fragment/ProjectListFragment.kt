@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.component.fragment
+package com.hosshan.android.godicparents.component.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
-import com.hosshan.android.godecparents.component.adapter.ProjectAdapter
-import com.hosshan.android.godecparents.model.Project
-import com.hosshan.android.godecparents.store.ProjectStoreAdapter
+import com.hosshan.android.godicparents.component.adapter.ProjectAdapter
+import com.hosshan.android.godicparents.model.Project
+import com.hosshan.android.godicparents.store.ProjectStoreAdapter
 import com.hosshan.android.godicparents.R
 import rx.Subscriber
 import java.util.ArrayList

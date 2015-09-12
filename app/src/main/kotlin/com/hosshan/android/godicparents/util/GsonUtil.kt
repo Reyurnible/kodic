@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.util
+package com.hosshan.android.godicparents.util
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

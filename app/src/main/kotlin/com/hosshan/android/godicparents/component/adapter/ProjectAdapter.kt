@@ -1,11 +1,11 @@
-package com.hosshan.android.godecparents.component.adapter
+package com.hosshan.android.godicparents.component.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.hosshan.android.godecparents.model.Project
+import com.hosshan.android.godicparents.model.Project
 import com.hosshan.android.godicparents.R
 import java.util.ArrayList
 

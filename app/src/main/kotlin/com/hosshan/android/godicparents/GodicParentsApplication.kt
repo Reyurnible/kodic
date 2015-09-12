@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents
+package com.hosshan.android.godicparents
 
 import android.app.Application
 import timber.log.Timber

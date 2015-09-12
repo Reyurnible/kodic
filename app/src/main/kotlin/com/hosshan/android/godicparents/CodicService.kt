@@ -1,9 +1,9 @@
-package com.hosshan.android.godecparents
+package com.hosshan.android.godicparents
 
-import com.hosshan.android.godecparents.model.CedEntry
-import com.hosshan.android.godecparents.model.CedTitle
-import com.hosshan.android.godecparents.model.Project
-import com.hosshan.android.godecparents.model.TranslatedText
+import com.hosshan.android.godicparents.model.CedEntry
+import com.hosshan.android.godicparents.model.CedTitle
+import com.hosshan.android.godicparents.model.Project
+import com.hosshan.android.godicparents.model.TranslatedText
 import retrofit.http.GET
 import retrofit.http.POST
 import retrofit.http.Path
