@@ -1,9 +1,9 @@
 package com.hosshan.android.godecparents
 
-import com.hosshan.android.godecparents.pojo.CedEntry
-import com.hosshan.android.godecparents.pojo.CedTitle
-import com.hosshan.android.godecparents.pojo.Project
-import com.hosshan.android.godecparents.pojo.TranslatedText
+import com.hosshan.android.godecparents.model.CedEntry
+import com.hosshan.android.godecparents.model.CedTitle
+import com.hosshan.android.godecparents.model.Project
+import com.hosshan.android.godecparents.model.TranslatedText
 import retrofit.http.GET
 import retrofit.http.POST
 import retrofit.http.Path
@@ -25,7 +25,7 @@ public interface CodicService {
     fun getProjectList(): Observable<List<Project>>
 
     @GET("/v1/user_projects/{id}.json")
-    fun getProject(@Path("id") id: Int): Observable<Project>
+    fun getProject(@Path("id") id: Int): Observable<Project?>
 
     @GET("/v1/ced/lookup.json")
     fun getCedLookup(@Query("query") query: String, @Query("count") number: Int = 10): Observable<List<CedTitle>>

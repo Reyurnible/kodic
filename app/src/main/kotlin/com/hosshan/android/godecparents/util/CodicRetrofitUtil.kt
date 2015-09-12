@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import retrofit.RequestInterceptor
 import retrofit.RestAdapter
-import retrofit.converter.GsonConverter
 import timber.log.Timber
 import kotlin.platform.platformStatic
 
@@ -16,7 +15,7 @@ public class CodicRetrofitUtil {
     companion object {
         platformStatic fun buildRestAdapter(context: Context): RestAdapter {
             val builder: RestAdapter.Builder = RestAdapter.Builder()
-            builder.setEndpoint(getEndPoint(context))
+            builder.setEndpoint(getEndPoint())
             builder.setRequestInterceptor(getRequestInterceptor(context))
             builder.setConverter(GsonUtil.getRetrofitConverter())
             builder.setLogLevel(RestAdapter.LogLevel.FULL)
@@ -26,7 +25,7 @@ public class CodicRetrofitUtil {
             return builder.build()
         }
 
-        platformStatic fun getEndPoint(context: Context): String {
+        platformStatic fun getEndPoint(): String {
             val builder: Uri.Builder = Uri.Builder()
             builder.scheme("https")
             builder.authority("api.codic.jp")

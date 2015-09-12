@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary -->
+    <color name="primary">#14ACCF</color>
+    <color name="primary_dark">#0097A7</color>
+    <color name="primary_light">#B2EBF2</color>
+    <!-- Accent -->
+    <color name="accent">#FF9800</color>
+    <!-- Text -->
+    <color name="primary_text">#212121</color>
+    <color name="primary_text_inverse">#FFFFFF</color>
+    <color name="secondary_text">#727272</color>
+    <color name="secondary_text_inverse">#CCCCCC</color>
+    <!-- Divider -->
+    <color name="divider">#B6B6B6</color>
+</resources>

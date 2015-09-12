@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/element_spacing_xlarge"
+    android:paddingLeft="@dimen/element_spacing_xlarge"
+    android:paddingRight="@dimen/element_spacing_xlarge"
+    android:paddingTop="@dimen/element_spacing_xlarge">
+
+    <EditText
+        android:id="@+id/login_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_edittext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/element_spacing_normal"
+        android:text="@string/login_button"/>
+
+</RelativeLayout>
