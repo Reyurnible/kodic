@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import butterknife.bindView
 import com.hosshan.android.godecparents.component.activity.BaseActivity
+import com.hosshan.android.godecparents.component.fragment.ProjectListFragment
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.component.fragment.TopFragment
 import timber.log.Timber
@@ -25,7 +26,7 @@ public class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setContentFragment(R.id.main_layout_container, TopFragment.newInstance())
+        setContentFragment(R.id.main_layout_container, ProjectListFragment.newInstance())
 
         // Setting Toolbar
         setToolbar()
