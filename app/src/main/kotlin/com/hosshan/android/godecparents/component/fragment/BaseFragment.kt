@@ -5,8 +5,6 @@ import com.cookpad.android.rxt4a.subscriptions.AndroidCompositeSubscription
 
 /**
  * Created by shunhosaka on 15/09/12.
- * Whats:
- * When :
  */
 public open class BaseFragment : Fragment() {
 
