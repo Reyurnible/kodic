@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.pojo
+package com.hosshan.android.godecparents.model
 
 import com.google.gson.annotations.SerializedName
 import java.util.Date
