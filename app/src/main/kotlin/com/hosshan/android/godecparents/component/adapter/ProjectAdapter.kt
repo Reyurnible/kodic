@@ -14,6 +14,12 @@ import java.util.ArrayList
  */
 public class ProjectAdapter(objects: ArrayList<Project>) : ArrayRecyclerAdapter<Project, ProjectAdapter.ProjectViewHolder>(objects) {
 
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ProjectViewHolder? {
+        val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_project, parent, false)
+        val viewHolder: ProjectViewHolder = ProjectViewHolder(view)
+        return viewHolder;
+    }
+
     override fun onBindViewHolder(holder: ProjectViewHolder?, position: Int) {
         val item: Project? = getItem(position)
         item?.let {
@@ -21,12 +27,6 @@ public class ProjectAdapter(objects: ArrayList<Project>) : ArrayRecyclerAdapter<
             holder?.description?.setText(item!!.description)
             holder?.owner?.setText(item!!.owner.name)
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ProjectViewHolder? {
-        val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_project, parent, false)
-        val viewHolder: ProjectViewHolder = ProjectViewHolder(view)
-        return viewHolder;
     }
 
     public class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
