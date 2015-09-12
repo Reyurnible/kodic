@@ -31,32 +31,39 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(item
 
     public fun insert(item: T, index: Int) {
         this.items.add(index, item)
+        notifyDataSetChanged()
     }
 
     public fun add(item: T) {
         this.items.add(item)
+        notifyDataSetChanged()
     }
 
     public fun addAll(items: Collection<T>?) {
         items?.let {
             this.items.addAll(items)
         }
+        notifyDataSetChanged()
     }
 
     public fun remove(index: Int) {
         this.items.remove(index)
+        notifyDataSetChanged()
     }
 
     public fun remove(item: T) {
         this.items.remove(item)
+        notifyDataSetChanged()
     }
 
     public fun clear() {
         this.items.clear()
+        notifyDataSetChanged()
     }
 
     public fun sort(comparator: Comparator<T>) {
         Collections.sort(this.items, comparator)
+        notifyDataSetChanged()
     }
 
 }
