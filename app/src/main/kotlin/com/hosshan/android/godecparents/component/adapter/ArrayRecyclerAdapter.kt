@@ -37,8 +37,10 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(item
         this.items.add(item)
     }
 
-    public fun addAll(items: Collection<T>) {
-        this.items.addAll(items)
+    public fun addAll(items: Collection<T>?) {
+        items?.let {
+            this.items.addAll(items)
+        }
     }
 
     public fun remove(index: Int) {
