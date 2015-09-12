@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.component.adapter
+package com.hosshan.android.godicparents.component.adapter
 
 import android.support.v7.widget.RecyclerView
 import java.util.*

@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import butterknife.bindView
-import com.hosshan.android.godecparents.component.activity.BaseActivity
-import com.hosshan.android.godecparents.component.fragment.ProjectListFragment
+import com.hosshan.android.godicparents.component.activity.BaseActivity
+import com.hosshan.android.godicparents.component.fragment.ProjectListFragment
 import com.hosshan.android.godicparents.R
 import timber.log.Timber
 

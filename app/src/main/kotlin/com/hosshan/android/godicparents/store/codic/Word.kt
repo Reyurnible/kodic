@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.model
+package com.hosshan.android.godicparents.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,9 +1,9 @@
-package com.hosshan.android.godecparents.store
+package com.hosshan.android.godicparents.store
 
 import android.content.Context
-import com.hosshan.android.godecparents.CodicService
-import com.hosshan.android.godecparents.model.Project
-import com.hosshan.android.godecparents.util.CodicRetrofitUtil
+import com.hosshan.android.godicparents.CodicService
+import com.hosshan.android.godicparents.model.Project
+import com.hosshan.android.godicparents.util.CodicRetrofitUtil
 import rx.Observable
 import java.util.*
 import kotlin.platform.platformStatic

@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.component.activity
+package com.hosshan.android.godicparents.component.activity
 
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment

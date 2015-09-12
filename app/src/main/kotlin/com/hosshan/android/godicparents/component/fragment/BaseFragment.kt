@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.component.fragment
+package com.hosshan.android.godicparents.component.fragment
 
 import android.support.v4.app.Fragment
 import com.cookpad.android.rxt4a.subscriptions.AndroidCompositeSubscription

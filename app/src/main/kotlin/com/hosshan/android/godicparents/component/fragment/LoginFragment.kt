@@ -1,4 +1,4 @@
-package com.hosshan.android.godecparents.component.fragment
+package com.hosshan.android.godicparents.component.fragment
 
 import android.content.Intent
 import android.os.Bundle
