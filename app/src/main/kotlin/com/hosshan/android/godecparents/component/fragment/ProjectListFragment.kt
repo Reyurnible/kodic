@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.godecparents.component.adapter.ProjectAdapter
 import com.hosshan.android.godecparents.model.Project
@@ -18,7 +19,7 @@ import kotlin.platform.platformStatic
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public class ProjectListFragment : Fragment() {
+public class ProjectListFragment : BaseFragment() {
 
     val adapter: ProjectAdapter
 
@@ -52,6 +53,7 @@ public class ProjectListFragment : Fragment() {
         ProjectStoreAdapter
                 .getProjectList(getActivity())
                 .observeOn(AndroidSchedulers.mainThread())
+                .lift(OperatorAddToCompositeSubscription<List<Project>>(compositeSubscription))
                 .subscribe(object : Subscriber<List<Project>>() {
                     override fun onCompleted() {
 
