@@ -19,7 +19,7 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(item
     }
 
     public fun getItem(index: Int): T? {
-        if (items.size() < index && index >= 0) {
+        if (index < items.size()  && index >= 0) {
             return items.get(index)
         }
         return null
