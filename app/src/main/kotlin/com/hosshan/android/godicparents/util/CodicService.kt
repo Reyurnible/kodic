@@ -16,7 +16,10 @@ import rx.Observable
 public interface CodicService {
 
     @GET("/v1/engine/translate.json")
-    fun getTranslate(@Query("text") text: String): Observable<List<TranslatedText>>
+    fun getTranslate(@Query("text") text: String, @Query("project_id") projectId: Int, @Query("casing") casing: String, @Query("acronym_style") acronymStyle: String): Observable<List<TranslatedText>>
+
+    @GET("/v1/engine/translate.json")
+    fun getTranslate(@Query("text") text: String, @Query("project_id") projectId: Int): Observable<List<TranslatedText>>
 
     @POST("/v1/engine/translate.json")
     fun postTranslate(): Observable<List<TranslatedText>>
