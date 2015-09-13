@@ -24,7 +24,7 @@
             android:id="@+id/translate_spinner_acronym"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>s
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
