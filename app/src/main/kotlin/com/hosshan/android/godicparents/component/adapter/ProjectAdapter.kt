@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.hosshan.android.godicparents.model.Project
 import com.hosshan.android.godicparents.R
+import com.hosshan.android.godicparents.model.Project
 import java.util.ArrayList
 
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public class ProjectAdapter(objects: ArrayList<Project>) : ArrayRecyclerAdapter<Project, ProjectAdapter.ProjectViewHolder>(objects) {
+public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) : ArrayRecyclerAdapter<Project, ProjectAdapter.ProjectViewHolder>(objects) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ProjectViewHolder? {
         val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_project, parent, false)

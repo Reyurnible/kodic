@@ -6,13 +6,7 @@ import java.util.*
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(items: ArrayList<T>) : RecyclerView.Adapter<VH>() {
-
-    private val items: ArrayList<T>
-
-    init {
-        this.items = items;
-    }
+public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val items: ArrayList<T>) : RecyclerView.Adapter<VH>() {
 
     override fun getItemCount(): Int {
         return items.size()
