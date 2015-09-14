@@ -27,11 +27,11 @@ public class TopFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? {
-        val rootView: View = inflater.inflate(R.layout.fragment_top, container, false)
-        
-
-        return rootView
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_top, container, false)
     }
 
-
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }

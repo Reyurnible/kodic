@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.model.TranslatedText
@@ -34,9 +36,10 @@ public class TranslateFragment : BaseFragment() {
     }
 
     var projectId: Int? = null
-    var caseSpinner: Spinner by Delegates.notNull()
-    var acronymSpinner: Spinner by Delegates.notNull()
-    var editText: EditText by Delegates.notNull()
+    val caseSpinner: Spinner by bindView(R.id.translate_spinner_case)
+    val acronymSpinner: Spinner by bindView(R.id.translate_spinner_acronym)
+    val editText: EditText by bindView(R.id.translate_edittext_text)
+    val button: Button by bindView(R.id.translate_button)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,17 +52,18 @@ public class TranslateFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? {
-        val rootView: View = inflater.inflate(R.layout.fragment_translate, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_translate, container, false)
+    }
 
-        caseSpinner = rootView.findViewById(R.id.translate_spinner_case) as Spinner
-        acronymSpinner = rootView.findViewById(R.id.translate_spinner_acronym) as Spinner
-        editText = rootView.findViewById(R.id.translate_edittext_text) as EditText
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setCaseSpinner()
 
         setAcronymSpinner()
 
-        rootView.findViewById(R.id.translate_button).setOnClickListener {
+        button.setOnClickListener {
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.getSelectedItemPosition() == 0) {
                 observableTranslatedText = TranslateStoreAdapter.getTranslate(getActivity(), editText.getText().toString(), projectId!!)
@@ -82,8 +86,6 @@ public class TranslateFragment : BaseFragment() {
                         }
                     })
         }
-
-        return rootView
     }
 
     private fun setCaseSpinner() {

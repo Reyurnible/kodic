@@ -11,6 +11,7 @@ import android.widget.EditText
 import butterknife.bindView
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.component.activity.MainActivity
+import kotlin.platform.platformStatic
 
 /**
  * Created by shunhosaka on 15/09/10.
@@ -18,7 +19,12 @@ import com.hosshan.android.godicparents.component.activity.MainActivity
 public class LoginFragment : Fragment() {
 
     companion object {
-
+        platformStatic public fun newInstance(): LoginFragment {
+            val fragment: LoginFragment = LoginFragment()
+            val args: Bundle = Bundle()
+            fragment.setArguments(args)
+            return fragment
+        }
     }
 
     val editText: EditText by bindView(R.id.login_edittext)

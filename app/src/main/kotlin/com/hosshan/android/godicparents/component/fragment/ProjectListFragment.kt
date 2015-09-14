@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.godicparents.component.adapter.ProjectAdapter
@@ -22,8 +23,6 @@ import kotlin.platform.platformStatic
  */
 public class ProjectListFragment : BaseFragment() {
 
-    val adapter: ProjectAdapter
-
     companion object {
         platformStatic public fun newInstance(): ProjectListFragment {
             val fragment: ProjectListFragment = ProjectListFragment()
@@ -33,22 +32,21 @@ public class ProjectListFragment : BaseFragment() {
         }
     }
 
-    init {
-        // initialize
-        adapter = ProjectAdapter(ArrayList<Project>())
-    }
+    val recyclerView: RecyclerView by bindView(R.id.project_list_recyclerview)
+    val adapter: ProjectAdapter = ProjectAdapter(ArrayList<Project>())
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view: View? = inflater?.inflate(R.layout.fragment_project_list, container, false)
+        return inflater?.inflate(R.layout.fragment_project_list, container, false)
+    }
 
-        val recyclerView: RecyclerView = view?.findViewById(R.id.project_list_recyclerview) as RecyclerView
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         recyclerView.setLayoutManager(LinearLayoutManager(getActivity()))
         recyclerView.setAdapter(adapter)
 
         getProjectList()
-
-        return view
     }
 
     private fun getProjectList() {
