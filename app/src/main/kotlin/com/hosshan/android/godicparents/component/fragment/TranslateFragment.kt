@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.hosshan.android.godicparents.R
@@ -40,7 +37,7 @@ public class TranslateFragment : BaseFragment() {
     val acronymSpinner: Spinner by bindView(R.id.translate_spinner_acronym)
     val editText: EditText by bindView(R.id.translate_edittext_text)
     val button: Button by bindView(R.id.translate_button)
-
+    val resultText: TextView by bindView(R.id.translate_textview_result)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +80,7 @@ public class TranslateFragment : BaseFragment() {
 
                         override fun onNext(items: List<TranslatedText>?) {
                             // TODO リストの表示処理
+
                         }
                     })
         }

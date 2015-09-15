@@ -3,4 +3,7 @@
 
     <!-- Login -->
     <string name="login_button">SAVE</string>
+
+    <!-- Translate -->
+    <string name="translate_button">Translate</string>
 </resources>

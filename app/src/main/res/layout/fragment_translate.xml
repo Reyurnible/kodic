@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:orientation="horizontal"
         android:divider="@drawable/img_divider"
-        android:showDividers="middle"
-        android:dividerPadding="@dimen/element_spacing_small">
+        android:dividerPadding="@dimen/element_spacing_small"
+        android:orientation="horizontal"
+        android:showDividers="middle">
 
         <Spinner
             android:id="@+id/translate_spinner_case"
@@ -46,6 +46,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Sarch"/>
+        android:text="@string/translate_button"/>
+
+    <TextView
+        android:id="@+id/translate_textview_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
