@@ -62,9 +62,9 @@ dependencies {
     compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7:$RxBindingVersion") {
         exclude module: 'appcompat-v7'
     }
-    compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RxBindingVersion") {
+    /*compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RxBindingVersion") {
         exclude module: 'appcompat-v7'
-    }
+    }*/
     compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$RxBindingVersion"
     compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$RxBindingVersion"
 
