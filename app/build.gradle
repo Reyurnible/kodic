@@ -1,9 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
-def RxBindingVersion = '0.2.0'
-def SupportLibVersion = '22.2.0'
-
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -39,34 +36,41 @@ android {
     }
 }
 
+def rxBindingVersion = '0.2.0'
+def supportLibVersion = '22.2.1'
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
     // Android support library
-    compile "com.android.support:support-v4:$SupportLibVersion"
-    compile "com.android.support:appcompat-v7:$SupportLibVersion"
-    compile "com.android.support:design:$SupportLibVersion"
+    compile "com.android.support:support-v4:$supportLibVersion"
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
 
     // Reactive
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'com.cookpad.android.rxt4a:rxt4a:0.10.0'
-    compile "com.jakewharton.rxbinding:rxbinding:$RxBindingVersion"
-    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RxBindingVersion"
-    compile ("com.jakewharton.rxbinding:rxbinding-support-v4:$RxBindingVersion") {
+    compile "com.jakewharton.rxbinding:rxbinding:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxBindingVersion"
+    compile ("com.jakewharton.rxbinding:rxbinding-support-v4:$rxBindingVersion") {
         exclude module: 'support-v4'
     }
-    compile ("com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RxBindingVersion") {
+    compile ("com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxBindingVersion") {
         exclude module: 'support-v4'
     }
-    compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7:$RxBindingVersion") {
+    compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rxBindingVersion") {
         exclude module: 'appcompat-v7'
     }
     /*compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RxBindingVersion") {
         exclude module: 'appcompat-v7'
     }*/
-    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$RxBindingVersion"
-    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$RxBindingVersion"
+    compile ("com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$rxBindingVersion") {
+        exclude module: 'appcompat-v7'
+    }
+    compile ("com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$rxBindingVersion") {
+        exclude module: 'appcompat-v7'
+    }
 
     // Retrofit
     compile 'com.squareup.retrofit:retrofit:1.9.0'
