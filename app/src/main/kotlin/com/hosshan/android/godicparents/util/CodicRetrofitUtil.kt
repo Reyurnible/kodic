@@ -8,7 +8,7 @@ import timber.log.Timber
 import kotlin.platform.platformStatic
 
 /**
- * Created by a40875 on 2015/09/10.
+ * Created by shunhosaka on 2015/09/10.
  */
 public class CodicRetrofitUtil {
 
