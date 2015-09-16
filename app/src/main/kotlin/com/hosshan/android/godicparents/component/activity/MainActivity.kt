@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import butterknife.bindView
-import com.hosshan.android.godicparents.component.activity.BaseActivity
-import com.hosshan.android.godicparents.component.fragment.ProjectListFragment
 import com.hosshan.android.godicparents.R
+import com.hosshan.android.godicparents.component.fragment.ProjectListFragment
 import timber.log.Timber
+import kotlin.properties.Delegates
 
 /**
  * Created by shunhosaka on 15/09/05.
@@ -22,25 +23,27 @@ public class MainActivity : BaseActivity() {
     val navigationView: NavigationView by bindView(R.id.main_navigation_view)
     val toolbar: Toolbar by bindView(R.id.main_toolbar)
 
+    var actionBarDrawerToggle: ActionBarDrawerToggle by Delegates.notNull()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setContentFragment(R.id.main_layout_container, ProjectListFragment.newInstance())
 
         // Setting Toolbar
-        setToolbar()
-
-        // Setting NavigationDrawer
-        setNavigationDrawer()
-    }
-
-    private fun setToolbar() {
         setSupportActionBar(toolbar)
         toolbar.setTitleTextColor(getResources().getColor(R.color.primary_text_inverse))
         toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
-    }
+        toolbar.setNavigationOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START) else drawerLayout.openDrawer(GravityCompat.START)
+        }
 
-    private fun setNavigationDrawer() {
+        actionBarDrawerToggle = ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.drawer_open,
+                R.string.drawer_close);
+
+        // Setting NavigationDrawer
         drawerLayout.setDrawerListener(
                 object : DrawerLayout.DrawerListener {
                     override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
@@ -62,17 +65,14 @@ public class MainActivity : BaseActivity() {
 
         navigationView.setNavigationItemSelectedListener (
                 object : NavigationView.OnNavigationItemSelectedListener {
-                    override fun onNavigationItemSelected(p0: MenuItem?): Boolean {
+                    override fun onNavigationItemSelected(item: MenuItem?): Boolean {
 
                         return false
                     }
                 }
         )
 
-        toolbar.setNavigationOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START) else drawerLayout.openDrawer(GravityCompat.START)
-        }
-
+        setContentFragment(R.id.main_layout_container, ProjectListFragment.newInstance())
     }
 
     override fun onBackPressed() {

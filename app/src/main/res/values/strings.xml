@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">GodicParents</string>
 
+    <string name="drawer_open"></string>
+    <string name="drawer_close"></string>
+
     <!-- Login -->
     <string name="login_button">SAVE</string>
 
