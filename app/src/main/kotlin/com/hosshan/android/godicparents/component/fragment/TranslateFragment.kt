@@ -6,10 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.hosshan.android.godicparents.R
@@ -19,6 +16,7 @@ import com.hosshan.android.godicparents.store.adapter.TranslateStoreAdapter
 import rx.Observable
 import rx.Subscriber
 import kotlin.platform.platformStatic
+import kotlin.properties.Delegates
 
 /**
  * Created by shunhosaka on 15/09/14.
@@ -35,21 +33,6 @@ public class TranslateFragment : BaseFragment() {
             fragment.setArguments(args)
             return fragment
         }
-
-        private platformStatic val cases: List<String> = arrayListOf(
-                "none",
-                "camel",
-                "pascal",
-                "lower underscore",
-                "upper underscore",
-                "hyphen"
-        )
-
-        private platformStatic val acronym: List<String> = arrayListOf(
-                "MS naming guidelines",
-                "camel strict",
-                "literal"
-        )
     }
 
     var projectId: Int? = null
@@ -59,7 +42,22 @@ public class TranslateFragment : BaseFragment() {
     val button: Button by bindView(R.id.translate_button)
     val resultRecyclerView: RecyclerView by bindView(R.id.translate_recyclerview_result)
 
-    var adapter: TranslatedTextAdapter = TranslatedTextAdapter(getActivity())
+    var adapter: TranslatedTextAdapter by Delegates.notNull()
+
+    private val cases: List<String> = arrayListOf(
+            "none",
+            "camel",
+            "pascal",
+            "lower underscore",
+            "upper underscore",
+            "hyphen"
+    )
+
+    private val acronym: List<String> = arrayListOf(
+            "MS naming guidelines",
+            "camel strict",
+            "literal"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +66,10 @@ public class TranslateFragment : BaseFragment() {
         if (projectId == null) {
             getActivity()?.finish()
         }
+        adapter = TranslatedTextAdapter(getActivity())
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_translate, container, false)
     }
@@ -80,13 +79,19 @@ public class TranslateFragment : BaseFragment() {
 
         val caseAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, cases)
         caseSpinner.setAdapter(caseAdapter)
-        caseSpinner.setOnItemClickListener { adapterView, view, index, l ->
-            if (index == 0) {
-                acronymSpinner.setVisibility(View.GONE)
-            } else {
-                acronymSpinner.setVisibility(View.VISIBLE)
+        caseSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
-        }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == 0) {
+                    acronymSpinner.setVisibility(View.GONE)
+                } else {
+                    acronymSpinner.setVisibility(View.VISIBLE)
+                }
+            }
+        })
 
         val acronymAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, acronym)
         acronymSpinner.setAdapter(acronymAdapter)
