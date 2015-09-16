@@ -1,5 +1,6 @@
 package com.hosshan.android.godicparents.component.adapter
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,7 @@ import java.util.ArrayList
 /**
  * Created by shunhosaka on 15/09/16.
  */
-public class TranslatedTextAdapter(objects: ArrayList<TranslatedText> = ArrayList<TranslatedText>()) : ArrayRecyclerAdapter<TranslatedText, TranslatedTextAdapter.ViewHolder>(objects) {
+public class TranslatedTextAdapter(activity: Activity, objects: ArrayList<TranslatedText> = ArrayList<TranslatedText>()) : ArrayRecyclerAdapter<TranslatedText, TranslatedTextAdapter.ViewHolder>(activity, objects) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_translated_text, parent, false)
