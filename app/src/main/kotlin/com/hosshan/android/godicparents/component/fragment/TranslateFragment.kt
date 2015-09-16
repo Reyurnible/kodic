@@ -59,7 +59,7 @@ public class TranslateFragment : BaseFragment() {
     val button: Button by bindView(R.id.translate_button)
     val resultRecyclerView: RecyclerView by bindView(R.id.translate_recyclerview_result)
 
-    var adapter: TranslatedTextAdapter = TranslatedTextAdapter()
+    var adapter: TranslatedTextAdapter = TranslatedTextAdapter(getActivity())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

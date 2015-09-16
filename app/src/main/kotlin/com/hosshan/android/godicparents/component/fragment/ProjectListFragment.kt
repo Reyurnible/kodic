@@ -33,7 +33,7 @@ public class ProjectListFragment : BaseFragment() {
     }
 
     val recyclerView: RecyclerView by bindView(R.id.project_list_recyclerview)
-    val adapter: ProjectAdapter = ProjectAdapter(ArrayList<Project>())
+    val adapter: ProjectAdapter = ProjectAdapter(getActivity())
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
