@@ -33,7 +33,7 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
         holder?.itemView?.setOnClickListener {
             val activity: Activity? = getAttachActivity()
             if (activity is BaseActivity) {
-                activity.addFragment("translated text", TranslateFragment.newInstance(item.id))
+                activity.addContentFragment(R.id.main_layout_container, TranslateFragment.newInstance(item.id))
             }
         }
     }
