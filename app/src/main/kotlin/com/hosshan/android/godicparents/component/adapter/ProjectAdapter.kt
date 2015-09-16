@@ -1,5 +1,6 @@
 package com.hosshan.android.godicparents.component.adapter
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.bindView
 import com.hosshan.android.godicparents.R
+import com.hosshan.android.godicparents.component.activity.BaseActivity
+import com.hosshan.android.godicparents.component.fragment.TranslateFragment
 import com.hosshan.android.godicparents.model.Project
 import java.util.ArrayList
 
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) : ArrayRecyclerAdapter<Project, ProjectAdapter.ViewHolder>(objects) {
+public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = ArrayList<Project>()) : ArrayRecyclerAdapter<Project, ProjectAdapter.ViewHolder>(activity, objects) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_project, parent, false)
@@ -27,6 +30,12 @@ public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) 
         holder?.name?.setText(item.name)
         holder?.description?.setText(item.description)
         holder?.owner?.setText(item.owner.name)
+        holder?.itemView?.setOnClickListener {
+            val activity: Activity? = getAttachActivity()
+            if (activity is BaseActivity) {
+                activity.addFragment("translated text", TranslateFragment.newInstance(item.id))
+            }
+        }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
