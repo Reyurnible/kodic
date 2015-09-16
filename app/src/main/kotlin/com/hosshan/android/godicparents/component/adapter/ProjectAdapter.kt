@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import butterknife.bindView
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.model.Project
 import java.util.ArrayList
@@ -22,23 +23,16 @@ public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) 
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val item: Project? = getItem(position)
-        item?.let {
-            holder?.name?.setText(item!!.name)
-            holder?.description?.setText(item!!.description)
-            holder?.owner?.setText(item!!.owner.name)
-        }
+        item ?: return
+        holder?.name?.setText(item.name)
+        holder?.description?.setText(item.description)
+        holder?.owner?.setText(item.owner.name)
     }
 
-    public class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView
-        val description: TextView
-        val owner: TextView
-
-        init {
-            name = view.findViewById(R.id.project_item_name) as TextView
-            description = view.findViewById(R.id.project_item_description) as TextView
-            owner = view.findViewById(R.id.project_item_owner) as TextView
-        }
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val name: TextView by bindView(R.id.project_item_name)
+        val description: TextView by bindView(R.id.project_item_description)
+        val owner: TextView by bindView(R.id.project_item_owner)
     }
 
 }
