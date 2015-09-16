@@ -1,19 +1,22 @@
 package com.hosshan.android.godicparents.component.adapter
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
-import java.util.*
+import java.util.ArrayList
+import java.util.Collections
+import java.util.Comparator
 
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val items: ArrayList<T>) : RecyclerView.Adapter<VH>() {
+public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val activity: Activity, val items: ArrayList<T>) : RecyclerView.Adapter<VH>() {
 
-    override fun getItemCount(): Int {
-        return items.size()
-    }
+    override fun getItemCount(): Int = items.size()
+
+    public fun getAttachActivity(): Activity = activity
 
     public fun getItem(index: Int): T? {
-        if (index < items.size()  && index >= 0) {
+        if (index < items.size() && index >= 0) {
             return items.get(index)
         }
         return null
