@@ -1,19 +1,24 @@
 package com.hosshan.android.godicparents.component.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.hosshan.android.godicparents.R
+import com.hosshan.android.godicparents.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.godicparents.model.TranslatedText
 import com.hosshan.android.godicparents.store.adapter.TranslateStoreAdapter
 import rx.Observable
 import rx.Subscriber
 import kotlin.platform.platformStatic
-import kotlin.properties.Delegates
 
 /**
  * Created by shunhosaka on 15/09/14.
@@ -30,6 +35,21 @@ public class TranslateFragment : BaseFragment() {
             fragment.setArguments(args)
             return fragment
         }
+
+        private platformStatic val cases: List<String> = arrayListOf(
+                "none",
+                "camel",
+                "pascal",
+                "lower underscore",
+                "upper underscore",
+                "hyphen"
+        )
+
+        private platformStatic val acronym: List<String> = arrayListOf(
+                "MS naming guidelines",
+                "camel strict",
+                "literal"
+        )
     }
 
     var projectId: Int? = null
@@ -37,7 +57,9 @@ public class TranslateFragment : BaseFragment() {
     val acronymSpinner: Spinner by bindView(R.id.translate_spinner_acronym)
     val editText: EditText by bindView(R.id.translate_edittext_text)
     val button: Button by bindView(R.id.translate_button)
-    val resultText: TextView by bindView(R.id.translate_textview_result)
+    val resultRecyclerView: RecyclerView by bindView(R.id.translate_recyclerview_result)
+
+    var adapter: TranslatedTextAdapter = TranslatedTextAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +78,19 @@ public class TranslateFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setCaseSpinner()
+        val caseAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, cases)
+        caseSpinner.setAdapter(caseAdapter)
+        caseSpinner.setOnItemClickListener { adapterView, view, index, l ->
+            if (index == 0) {
+                acronymSpinner.setVisibility(View.GONE)
+            } else {
+                acronymSpinner.setVisibility(View.VISIBLE)
+            }
+        }
 
-        setAcronymSpinner()
+        val acronymAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, acronym)
+        acronymSpinner.setAdapter(acronymAdapter)
+        acronymSpinner.setVisibility(View.GONE)
 
         button.setOnClickListener {
             val observableTranslatedText: Observable<List<TranslatedText>>
@@ -79,43 +111,13 @@ public class TranslateFragment : BaseFragment() {
                         }
 
                         override fun onNext(items: List<TranslatedText>?) {
-                            // TODO リストの表示処理
-
+                            adapter.addAll(items)
                         }
                     })
         }
-    }
 
-    private fun setCaseSpinner() {
-        val cases: List<String> = arrayListOf(
-                "none",
-                "camel",
-                "pascal",
-                "lower underscore",
-                "upper underscore",
-                "hyphen"
-        )
-        val caseAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, cases)
-        caseSpinner.setAdapter(caseAdapter)
-        caseSpinner.setOnItemClickListener { adapterView, view, index, l ->
-            if (index == 0) {
-                acronymSpinner.setVisibility(View.GONE)
-            } else {
-                acronymSpinner.setVisibility(View.VISIBLE)
-            }
-        }
+        resultRecyclerView.setLayoutManager(LinearLayoutManager(getActivity()))
+        resultRecyclerView.setAdapter(adapter)
     }
-
-    private fun setAcronymSpinner() {
-        val acronym: List<String> = arrayListOf(
-                "MS naming guidelines",
-                "camel strict",
-                "literal"
-        )
-        val acronymAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, acronym)
-        acronymSpinner.setAdapter(acronymAdapter)
-        acronymSpinner.setVisibility(View.GONE)
-    }
-
 
 }
