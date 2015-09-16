@@ -15,6 +15,12 @@ public open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    fun addContentFragment(IdRes resourceId: Int, fragment: Fragment?) {
+        fragment?.let {
+            getSupportFragmentManager()?.beginTransaction()?.add(resourceId, fragment)?.commit()
+        }
+    }
+
     fun getContentFragment(IdRes resourceId: Int): Fragment? {
         return getSupportFragmentManager().findFragmentById(resourceId)
     }
