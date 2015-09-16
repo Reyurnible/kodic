@@ -12,15 +12,15 @@ import java.util.ArrayList
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) : ArrayRecyclerAdapter<Project, ProjectAdapter.ProjectViewHolder>(objects) {
+public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) : ArrayRecyclerAdapter<Project, ProjectAdapter.ViewHolder>(objects) {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ProjectViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_project, parent, false)
-        val viewHolder: ProjectViewHolder = ProjectViewHolder(view)
+        val viewHolder: ViewHolder = ViewHolder(view)
         return viewHolder;
     }
 
-    override fun onBindViewHolder(holder: ProjectViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val item: Project? = getItem(position)
         item?.let {
             holder?.name?.setText(item!!.name)
@@ -29,7 +29,7 @@ public class ProjectAdapter(objects: ArrayList<Project> = ArrayList<Project>()) 
         }
     }
 
-    public class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    public class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView
         val description: TextView
         val owner: TextView
