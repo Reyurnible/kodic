@@ -10,13 +10,13 @@ import kotlin.platform.platformStatic
  */
 public class GsonUtil {
     companion object {
-        platformStatic fun getInstance(): Gson {
+        @JvmStatic fun getInstance(): Gson {
             val builder: GsonBuilder = GsonBuilder()
             builder.setDateFormat("EEE, d MMM yyyy HH:mm:ss Z")
             return builder.create()
         }
 
-        platformStatic fun getRetrofitConverter(): GsonConverter {
+        @JvmStatic fun getRetrofitConverter(): GsonConverter {
             return GsonConverter(getInstance())
         }
     }

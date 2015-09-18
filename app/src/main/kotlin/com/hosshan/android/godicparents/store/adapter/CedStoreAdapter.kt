@@ -14,16 +14,16 @@ import kotlin.platform.platformStatic
 public class CedStoreAdapter {
 
     companion object {
-        platformStatic fun getCedLookup(context: Context, query: String, number: Int = 10): Observable<List<CedTitle>>
+        @JvmStatic fun getCedLookup(context: Context, query: String, number: Int = 10): Observable<List<CedTitle>>
                 = CodicRetrofitUtil
                 .buildRestAdapter(context)
-                .create(javaClass<CodicService>())
+                .create(CodicService::class.java)
                 .getCedLookup(query, number)
 
-        platformStatic fun getCedEntry(context: Context, id: Int): Observable<CedEntry>
+        @JvmStatic fun getCedEntry(context: Context, id: Int): Observable<CedEntry>
                 = CodicRetrofitUtil
                 .buildRestAdapter(context)
-                .create(javaClass<CodicService>())
+                .create(CodicService::class .java)
                 .getCedEntry(id)
     }
 

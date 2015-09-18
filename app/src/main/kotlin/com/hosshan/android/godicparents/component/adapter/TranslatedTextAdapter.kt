@@ -17,7 +17,7 @@ import java.util.ArrayList
 public class TranslatedTextAdapter(activity: Activity, objects: ArrayList<TranslatedText> = ArrayList<TranslatedText>()) : ArrayRecyclerAdapter<TranslatedText, TranslatedTextAdapter.ViewHolder>(activity, objects) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-        val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_translated_text, parent, false)
+        val view: View = LayoutInflater.from(parent?.context).inflate(R.layout.item_translated_text, parent, false)
         val viewHolder: TranslatedTextAdapter.ViewHolder = TranslatedTextAdapter.ViewHolder(view)
         return viewHolder;
     }
@@ -25,8 +25,8 @@ public class TranslatedTextAdapter(activity: Activity, objects: ArrayList<Transl
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val item: TranslatedText? = getItem(position)
         item ?: return
-        holder?.originalText?.setText(item.text)
-        holder?.translatedText?.setText(item.translatedText)
+        holder?.originalText?.text = item.text
+        holder?.translatedText?.text = item.translatedText
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

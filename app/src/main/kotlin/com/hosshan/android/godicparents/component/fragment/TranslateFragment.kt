@@ -26,11 +26,11 @@ public class TranslateFragment : BaseFragment() {
     companion object {
         val KEY_PROJECT_ID: String = "project_id"
 
-        platformStatic public fun newInstance(projectId: Int): TranslateFragment {
+        @JvmStatic public fun newInstance(projectId: Int): TranslateFragment {
             val fragment: TranslateFragment = TranslateFragment()
             val args: Bundle = Bundle()
             args.putInt(KEY_PROJECT_ID, projectId)
-            fragment.setArguments(args)
+            fragment.arguments = args
             return fragment
         }
     }
@@ -61,12 +61,12 @@ public class TranslateFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val args: Bundle? = getArguments()
+        val args: Bundle? = arguments
         projectId = args?.getInt(KEY_PROJECT_ID)
         if (projectId == null) {
-            getActivity()?.finish()
+            activity?.finish()
         }
-        adapter = TranslatedTextAdapter(getActivity())
+        adapter = TranslatedTextAdapter(activity)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -78,8 +78,8 @@ public class TranslateFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val caseAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, cases)
-        caseSpinner.setAdapter(caseAdapter)
-        caseSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        caseSpinner.adapter = caseAdapter
+        caseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -91,18 +91,18 @@ public class TranslateFragment : BaseFragment() {
                     acronymSpinner.setVisibility(View.VISIBLE)
                 }
             }
-        })
+        }
 
         val acronymAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, acronym)
-        acronymSpinner.setAdapter(acronymAdapter)
-        acronymSpinner.setVisibility(View.GONE)
+        acronymSpinner.adapter = acronymAdapter
+        acronymSpinner.visibility = View.GONE
 
         button.setOnClickListener {
             val observableTranslatedText: Observable<List<TranslatedText>>
-            if (caseSpinner.getSelectedItemPosition() == 0) {
-                observableTranslatedText = TranslateStoreAdapter.getTranslate(getActivity(), editText.getText().toString(), projectId!!)
+            if (caseSpinner.selectedItemPosition == 0) {
+                observableTranslatedText = TranslateStoreAdapter.getTranslate(activity, editText.text.toString(), projectId!!)
             } else {
-                observableTranslatedText = TranslateStoreAdapter.getTranslate(getActivity(), editText.getText().toString(), projectId!!, caseSpinner.getSelectedItem() as String, acronymSpinner.getSelectedItem() as String)
+                observableTranslatedText = TranslateStoreAdapter.getTranslate(activity, editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
             }
             observableTranslatedText
                     .lift(OperatorAddToCompositeSubscription<List<TranslatedText>>(compositeSubscription))
@@ -121,8 +121,8 @@ public class TranslateFragment : BaseFragment() {
                     })
         }
 
-        resultRecyclerView.setLayoutManager(LinearLayoutManager(getActivity()))
-        resultRecyclerView.setAdapter(adapter)
+        resultRecyclerView.layoutManager = LinearLayoutManager(getActivity())
+        resultRecyclerView.adapter = adapter
     }
 
 }

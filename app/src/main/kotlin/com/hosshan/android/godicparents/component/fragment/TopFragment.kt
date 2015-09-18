@@ -14,10 +14,10 @@ import kotlin.platform.platformStatic
 public class TopFragment : Fragment() {
 
     companion object {
-        platformStatic public fun newInstance(): TopFragment {
+        @JvmStatic public fun newInstance(): TopFragment {
             val fragment: TopFragment = TopFragment()
             val args: Bundle = Bundle()
-            fragment.setArguments(args)
+            fragment.arguments = args
             return fragment
         }
     }

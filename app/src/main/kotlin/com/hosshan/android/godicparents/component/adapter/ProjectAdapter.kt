@@ -19,7 +19,7 @@ import java.util.ArrayList
 public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = ArrayList<Project>()) : ArrayRecyclerAdapter<Project, ProjectAdapter.ViewHolder>(activity, objects) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-        val view: View = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_project, parent, false)
+        val view: View = LayoutInflater.from(parent?.context).inflate(R.layout.item_project, parent, false)
         val viewHolder: ViewHolder = ViewHolder(view)
         return viewHolder;
     }
@@ -27,9 +27,9 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val item: Project? = getItem(position)
         item ?: return
-        holder?.name?.setText(item.name)
-        holder?.description?.setText(item.description)
-        holder?.owner?.setText(item.owner.name)
+        holder?.name?.text = item.name
+        holder?.description?.text = item.description
+        holder?.owner?.text = item.owner.name
         holder?.itemView?.setOnClickListener {
             val activity: Activity? = getAttachActivity()
             if (activity is BaseActivity) {

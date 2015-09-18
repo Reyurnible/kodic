@@ -38,7 +38,7 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val 
 
     public fun addAll(items: Collection<T>?) {
         items?.let {
-            this.items.addAll(items)
+            this.items.addAll(items!!)
         }
         notifyDataSetChanged()
     }
