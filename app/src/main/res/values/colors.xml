@@ -13,4 +13,50 @@
     <color name="secondary_text_inverse">#CCCCCC</color>
     <!-- Divider -->
     <color name="divider">#B6B6B6</color>
+
+    <!-- mataterial colors -->
+    <array name="material_colors">
+        <item>#F44336</item><!-- RED -->
+        <item>#E91E63</item><!-- PINK -->
+        <item>#9C27B0</item><!-- PURPLE -->
+        <item>#673AB7</item><!-- DEEP PURPLE -->
+        <item>#3F51B5</item><!-- INDIGO -->
+        <item>#2196F3</item><!-- BLUE -->
+        <item>#03A9F4</item><!-- LIGHT BLUE -->
+        <item>#00BCD4</item><!-- CYAN -->
+        <item>#009688</item><!-- TEAL -->
+        <item>#4CAF50</item><!-- GREEN -->
+        <item>#8BC34A</item><!-- LIGHT GREEN -->
+        <item>#CDDC39</item><!-- LIME -->
+        <item>#FFEB3B</item><!-- YELLOW -->
+        <item>#FFC107</item><!-- AMBER -->
+        <item>#FF9800</item><!-- ORANGE -->
+        <item>#FF5722</item><!-- DEEP ORANGE -->
+        <item>#795548</item><!-- BROWN -->
+        <item>#9E9E9E</item><!-- GREY -->
+        <item>#607D8B</item><!-- BLUE GREY -->
+    </array>
+
+    <array name="material_colors_dark">
+        <item>#D32F2F</item><!-- RED -->
+        <item>#C2185B</item><!-- PINK -->
+        <item>#7B1FA2</item><!-- PURPLE -->
+        <item>#512DA8</item><!-- DEEP PURPLE -->
+        <item>#303F9F</item><!-- INDIGO -->
+        <item>#1976D2</item><!-- BLUE -->
+        <item>#0288D1</item><!-- LIGHT BLUE -->
+        <item>#0097A7</item><!-- CYAN -->
+        <item>#00796B</item><!-- TEAL -->
+        <item>#388E3C</item><!-- GREEN -->
+        <item>#689F38</item><!-- LIGHT GREEN -->
+        <item>#AFB42B</item><!-- LIME -->
+        <item>#FBC02D</item><!-- YELLOW -->
+        <item>#FFA000</item><!-- AMBER -->
+        <item>#F57C00</item><!-- ORANGE -->
+        <item>#E54A19</item><!-- DEEP ORANGE -->
+        <item>#5D4037</item><!-- BROWN -->
+        <item>#616161</item><!-- GREY -->
+        <item>#455A64</item><!-- BLUE GREY -->
+    </array>
+
 </resources>
