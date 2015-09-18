@@ -7,7 +7,7 @@
                   android:height="@dimen/view_size_normal"/>
         </shape>
     </item>
-    <item android:id="@+id/floating"
+    <item android:id="@+id/content"
           android:bottom="@dimen/element_spacing_tiny"
           android:right="@dimen/element_spacing_tiny"
           android:left="@dimen/element_spacing_tiny"
