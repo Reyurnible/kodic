@@ -1,6 +1,9 @@
 package com.hosshan.android.godicparents.component.adapter
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.TypedArray
+import android.support.annotation.ColorInt
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +14,7 @@ import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.component.activity.BaseActivity
 import com.hosshan.android.godicparents.component.fragment.TranslateFragment
 import com.hosshan.android.godicparents.model.Project
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by shunhosaka on 15/09/12.
