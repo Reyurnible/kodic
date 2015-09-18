@@ -15,14 +15,14 @@ public class ColorUtil {
         @JvmStatic
         @ColorInt
         fun getMaterialColor(context: Context, index: Int): Int {
-            val colorArray: TypedArray = context.resources.obtainTypedArray(R.array.material_colors);
+            val colorArray: TypedArray = context.resources.obtainTypedArray(R.array.material_colors)
             return colorArray.getColor(index, context.getColor(R.color.primary))
         }
 
         @JvmStatic
         @ColorInt
         fun getMaterialDarkColor(context: Context, index: Int): Int {
-            val colorArray: TypedArray = context.resources.obtainTypedArray(R.array.material_colors_dark);
+            val colorArray: TypedArray = context.resources.obtainTypedArray(R.array.material_colors_dark)
             return colorArray.getColor(index, context.getColor(R.color.primary_dark))
         }
 
