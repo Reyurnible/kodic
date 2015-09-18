@@ -26,7 +26,7 @@ public class ProjectListFragment : BaseFragment() {
         platformStatic public fun newInstance(): ProjectListFragment {
             val fragment: ProjectListFragment = ProjectListFragment()
             val args: Bundle = Bundle()
-            fragment.setArguments(args)
+            fragment.arguments = args
             return fragment
         }
     }
@@ -36,7 +36,7 @@ public class ProjectListFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = ProjectAdapter(getActivity())
+        adapter = ProjectAdapter(activity)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,15 +47,15 @@ public class ProjectListFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView.setLayoutManager(LinearLayoutManager(getActivity()))
-        recyclerView.setAdapter(adapter)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = adapter
 
         getProjectList()
     }
 
     private fun getProjectList() {
         ProjectStoreAdapter
-                .getProjectList(getActivity())
+                .getProjectList(activity)
                 .observeOn(AndroidSchedulers.mainThread())
                 .lift(OperatorAddToCompositeSubscription<List<Project>>(compositeSubscription))
                 .subscribe(object : Subscriber<List<Project>>() {

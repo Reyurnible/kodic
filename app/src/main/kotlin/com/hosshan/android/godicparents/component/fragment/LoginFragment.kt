@@ -19,10 +19,10 @@ import kotlin.platform.platformStatic
 public class LoginFragment : Fragment() {
 
     companion object {
-        platformStatic public fun newInstance(): LoginFragment {
+        @JvmStatic public fun newInstance(): LoginFragment {
             val fragment: LoginFragment = LoginFragment()
             val args: Bundle = Bundle()
-            fragment.setArguments(args)
+            fragment.arguments = args
             return fragment
         }
     }
@@ -36,7 +36,7 @@ public class LoginFragment : Fragment() {
         button.setOnClickListener {
             // TODO EditTextの内容を保存する
 
-            val intent: Intent = Intent(getActivity(), javaClass<MainActivity>())
+            val intent: Intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         }
 
