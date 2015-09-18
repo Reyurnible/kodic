@@ -13,7 +13,7 @@ import kotlin.platform.platformStatic
 public class CodicRetrofitUtil {
 
     companion object {
-        platformStatic fun buildRestAdapter(context: Context): RestAdapter {
+        @JvmStatic fun buildRestAdapter(context: Context): RestAdapter {
             val builder: RestAdapter.Builder = RestAdapter.Builder()
             builder.setEndpoint(getEndPoint())
             builder.setRequestInterceptor(getRequestInterceptor(context))
@@ -25,14 +25,14 @@ public class CodicRetrofitUtil {
             return builder.build()
         }
 
-        platformStatic fun getEndPoint(): String {
+        @JvmStatic fun getEndPoint(): String {
             val builder: Uri.Builder = Uri.Builder()
             builder.scheme("https")
             builder.authority("api.codic.jp")
             return builder.build().toString()
         }
 
-        platformStatic fun getRequestInterceptor(context: Context): RequestInterceptor {
+        @JvmStatic fun getRequestInterceptor(context: Context): RequestInterceptor {
             val requestInterceptor: RequestInterceptor = RequestInterceptor {
                 it.addHeader("Authorization", "Bearer " + "bHEdExeRcKaUS8nnYhDbRsLPUuEN1FPV2");
             }
