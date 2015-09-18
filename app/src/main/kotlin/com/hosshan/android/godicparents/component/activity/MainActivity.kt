@@ -31,7 +31,7 @@ public class MainActivity : BaseActivity() {
 
         // Setting Toolbar
         setSupportActionBar(toolbar)
-        toolbar.setTitleTextColor(getResources().getColor(R.color.primary_text_inverse))
+        toolbar.setTitleTextColor(getColor(R.color.primary_text_inverse))
         toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
         toolbar.setNavigationOnClickListener {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START) else drawerLayout.openDrawer(GravityCompat.START)

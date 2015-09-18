@@ -11,27 +11,27 @@ public open class BaseActivity : AppCompatActivity() {
 
     fun setContentFragment(IdRes resourceId: Int, fragment: Fragment?) {
         fragment?.let {
-            getSupportFragmentManager()?.beginTransaction()?.replace(resourceId, fragment)?.commit()
+            supportFragmentManager?.beginTransaction()?.replace(resourceId, fragment)?.commit()
         }
     }
 
     fun addContentFragment(IdRes resourceId: Int, fragment: Fragment?) {
         fragment?.let {
-            getSupportFragmentManager()?.beginTransaction()?.add(resourceId, fragment)?.commit()
+            supportFragmentManager?.beginTransaction()?.add(resourceId, fragment)?.commit()
         }
     }
 
     fun getContentFragment(IdRes resourceId: Int): Fragment? {
-        return getSupportFragmentManager().findFragmentById(resourceId)
+        return supportFragmentManager.findFragmentById(resourceId)
     }
 
     fun getContentFragment(tag: String): Fragment? {
-        return getSupportFragmentManager().findFragmentByTag(tag)
+        return supportFragmentManager.findFragmentByTag(tag)
     }
 
     fun addFragment(tag: String, fragment: Fragment) {
         fragment?.let {
-            getSupportFragmentManager()?.beginTransaction()?.add(fragment, tag)?.commit()
+            supportFragmentManager?.beginTransaction()?.add(fragment, tag)?.commit()
         }
     }
 
