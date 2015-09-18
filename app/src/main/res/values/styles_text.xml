@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text" parent="TextAppearance.AppCompat">
+    </style>
+
+    <!-- project -->
+    <style name="Text.Project" />
+    <style name="Text.Project.Icon">
+        <item name="android:textColor">@color/primary_text_inverse</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textScaleX">1.2</item>
+    </style>
+
+    <style name="Text.Project.Title">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
+</resources>

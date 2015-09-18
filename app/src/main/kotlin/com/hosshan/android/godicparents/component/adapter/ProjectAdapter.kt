@@ -2,11 +2,9 @@ package com.hosshan.android.godicparents.component.adapter
 
 import android.app.Activity
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
-import android.support.annotation.ColorInt
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +55,7 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
         return createDrawable(context, text.length() % MATERIAL_COLOR_SIZE)
     }
 
-    fun createDrawable(context: Context, index: Int) : Drawable {
+    fun createDrawable(context: Context, index: Int): Drawable {
         val root: LayerDrawable = context.getDrawable(R.drawable.img_project_icon) as LayerDrawable
         val background: GradientDrawable = root.findDrawableByLayerId(R.id.background) as GradientDrawable
         background.setColor(ColorUtil.getMaterialDarkColor(context, index))

@@ -37,4 +37,9 @@
     <dimen name="text_size_caption">12sp</dimen>
     <dimen name="text_size_button">14sp</dimen>
 
+
+    <!-- Project -->
+    <dimen name="project_card_size">240dp</dimen>
+
+
 </resources>

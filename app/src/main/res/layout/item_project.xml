@@ -3,24 +3,79 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="@dimen/element_spacing_small">
 
-    <TextView
-        android:id="@+id/project_item_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="name"/>
 
-    <TextView
-        android:id="@+id/project_item_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="description"/>
+    <android.support.v7.widget.CardView
+        android:id="@+id/project_item_card"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/project_card_size">
 
-    <TextView
-        android:id="@+id/project_item_owner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="owner"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/project_item_image_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/img_triangles"/>
+
+                <TextView
+                    android:id="@+id/project_item_text_icon"
+                    style="@style/Text.Project.Icon"
+                    android:layout_width="@dimen/view_size_xlarge"
+                    android:layout_height="@dimen/view_size_xlarge"
+                    android:layout_centerInParent="true"
+                    tools:background="@drawable/img_project_icon"
+                    tools:text="AAA"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingBottom="@dimen/element_spacing_normal"
+                android:paddingLeft="@dimen/element_spacing_normal"
+                android:paddingRight="@dimen/element_spacing_normal"
+                android:paddingTop="@dimen/element_spacing_normal">
+
+                <TextView
+                    android:id="@+id/project_item_text_name"
+                    style="@style/Text.Project.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="name"/>
+
+                <TextView
+                    android:id="@+id/project_item_text_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/project_item_text_name"
+                    tools:text="owner"/>
+                <TextView
+                    android:id="@+id/project_item_text_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/project_item_text_owner"
+                    android:layout_marginTop="@dimen/element_spacing_normal"
+                    android:ellipsize="end"
+                    tools:text="description"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
