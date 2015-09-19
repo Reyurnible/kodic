@@ -4,8 +4,14 @@
     <color name="primary">#14ACCF</color>
     <color name="primary_dark">#0097A7</color>
     <color name="primary_light">#B2EBF2</color>
+    <!-- Primary Action Color -->
+    <color name="primary_action_disable">#8814ACCF</color>
+    <color name="primary_action_pressed">#3A64C5</color>
     <!-- Accent -->
     <color name="accent">#FF9800</color>
+    <!-- Accent Action Color -->
+    <color name="accent_action_disable">#88FF9800</color>
+    <color name="accent_action_pressed">#EE8700</color>
     <!-- Text -->
     <color name="primary_text">#212121</color>
     <color name="primary_text_inverse">#FFFFFF</color>
@@ -41,6 +47,7 @@
         <item>#607D8B</item><!-- BLUE GREY -->
     </array>
 
+    <!-- mataterial dark colors -->
     <array name="material_colors_dark">
         <item>#D32F2F</item><!-- RED -->
         <item>#C2185B</item><!-- PINK -->
