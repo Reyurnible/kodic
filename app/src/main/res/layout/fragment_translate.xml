@@ -51,7 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/translate_button"/>
+        android:text="@string/translate_button" android:background="@drawable/btn_primary"
+        android:textColor="@color/primary_text_inverse"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/translate_recyclerview_result"
