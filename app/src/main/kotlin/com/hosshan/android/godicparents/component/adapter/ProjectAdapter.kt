@@ -51,13 +51,6 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
         }
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: TextView by bindView(R.id.project_item_text_icon)
-        val name: TextView by bindView(R.id.project_item_text_name)
-        val description: TextView by bindView(R.id.project_item_text_description)
-        val owner: TextView by bindView(R.id.project_item_text_owner)
-    }
-
     fun createIconName(text: String): String {
         if (Regex("[A-Z]+").matchAll(text, 0).count() > 0) {
             return Regex("[0-9a-z]+").replace(text, "")
@@ -78,6 +71,13 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
         val content: GradientDrawable = root.findDrawableByLayerId(R.id.content) as GradientDrawable
         content.setColor(ColorUtil.getMaterialColor(context, index))
         return root
+    }
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val icon: TextView by bindView(R.id.project_item_text_icon)
+        val name: TextView by bindView(R.id.project_item_text_name)
+        val description: TextView by bindView(R.id.project_item_text_description)
+        val owner: TextView by bindView(R.id.project_item_text_owner)
     }
 
 }
