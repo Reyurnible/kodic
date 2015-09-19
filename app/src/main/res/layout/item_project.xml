@@ -4,7 +4,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:padding="@dimen/element_spacing_small">
+              android:paddingBottom="@dimen/element_spacing_normal"
+              android:paddingLeft="@dimen/element_spacing_large"
+              android:paddingRight="@dimen/element_spacing_large"
+              android:paddingTop="@dimen/element_spacing_normal">
 
 
     <android.support.v7.widget.CardView

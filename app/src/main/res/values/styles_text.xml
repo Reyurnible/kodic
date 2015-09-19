@@ -20,6 +20,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-
+    <!-- translate -->
+    <style name="Text.Translate" />
+    <style name="Text.Translate.Spinner">
+        <item name="android:textColor">@color/primary_text_inverse</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 
 </resources>

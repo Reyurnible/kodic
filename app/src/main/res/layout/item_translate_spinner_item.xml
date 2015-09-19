@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                 xmlns:tools="http://schemas.android.com/tools"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/view_size_normal"
+                 android:orientation="vertical"
+                 android:paddingBottom="@dimen/element_spacing_large"
+                 android:paddingLeft="@dimen/element_spacing_normal"
+                 android:paddingRight="@dimen/element_spacing_normal"
+                 android:paddingTop="@dimen/element_spacing_large"
+                 android:textAppearance="@style/Text.Translate.Spinner"
+                 android:background="@color/primary"
+                 tools:text="spinner item"/>

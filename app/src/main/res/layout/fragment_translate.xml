@@ -20,13 +20,13 @@
             android:id="@+id/translate_spinner_case"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" android:spinnerMode="dropdown"/>
 
         <Spinner
             android:id="@+id/translate_spinner_acronym"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" android:spinnerMode="dropdown"/>
 
     </LinearLayout>
 

@@ -9,13 +9,15 @@ import android.view.ViewGroup
 import android.widget.*
 import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
+import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.godicparents.model.TranslatedText
 import com.hosshan.android.godicparents.store.adapter.TranslateStoreAdapter
+import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
-import kotlin.platform.platformStatic
+import rx.schedulers.Schedulers
 import kotlin.properties.Delegates
 
 /**
@@ -77,13 +79,11 @@ public class TranslateFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val caseAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, cases)
-        caseSpinner.adapter = caseAdapter
+        caseSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, cases)
         caseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
-
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 0) {
                     acronymSpinner.setVisibility(View.GONE)
@@ -93,8 +93,7 @@ public class TranslateFragment : BaseFragment() {
             }
         }
 
-        val acronymAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, acronym)
-        acronymSpinner.adapter = acronymAdapter
+        acronymSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, acronym)
         acronymSpinner.visibility = View.GONE
 
         button.setOnClickListener {
@@ -106,6 +105,8 @@ public class TranslateFragment : BaseFragment() {
             }
             observableTranslatedText
                     .lift(OperatorAddToCompositeSubscription<List<TranslatedText>>(compositeSubscription))
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object : Subscriber<List<TranslatedText>>() {
                         override fun onError(e: Throwable?) {
 
