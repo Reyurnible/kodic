@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.hosshan.android.godicparents.component.fragment.TranslateFragment
 import com.hosshan.android.godicparents.model.Project
 import com.hosshan.android.godicparents.util.ColorUtil
 import java.util.*
+import kotlin.text.Regex
 
 /**
  * Created by shunhosaka on 15/09/12.
@@ -32,13 +34,17 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+        val activity: Activity? = getAttachActivity()
         val item: Project? = getItem(position)
         item ?: return
+
+        holder?.icon?.text = createIconName(item.name)
+        holder?.icon?.background = createDrawable(activity, item.name)
         holder?.name?.text = item.name
         holder?.description?.text = item.description
+        holder?.description?.visibility = if (TextUtils.isEmpty(item.description)) View.GONE else View.VISIBLE
         holder?.owner?.text = item.owner.name
         holder?.itemView?.setOnClickListener {
-            val activity: Activity? = getAttachActivity()
             if (activity is BaseActivity) {
                 activity.addContentFragment(R.id.main_layout_container, TranslateFragment.newInstance(item.id))
             }
@@ -46,16 +52,26 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView by bindView(R.id.project_item_name)
-        val description: TextView by bindView(R.id.project_item_description)
-        val owner: TextView by bindView(R.id.project_item_owner)
+        val icon: TextView by bindView(R.id.project_item_text_icon)
+        val name: TextView by bindView(R.id.project_item_text_name)
+        val description: TextView by bindView(R.id.project_item_text_description)
+        val owner: TextView by bindView(R.id.project_item_text_owner)
     }
 
-    fun createDrawable(context: Context, text: String): Drawable {
+    fun createIconName(text: String): String {
+        if (Regex("[A-Z]+").matchAll(text, 0).count() > 0) {
+            return Regex("[0-9a-z]+").replace(text, "")
+        } else {
+            return text.substring(0).toUpperCase()
+        }
+    }
+
+    fun createDrawable(context: Context?, text: String): Drawable? {
         return createDrawable(context, text.length() % MATERIAL_COLOR_SIZE)
     }
 
-    fun createDrawable(context: Context, index: Int): Drawable {
+    fun createDrawable(context: Context?, index: Int): Drawable? {
+        context ?: return null
         val root: LayerDrawable = context.getDrawable(R.drawable.img_project_icon) as LayerDrawable
         val background: GradientDrawable = root.findDrawableByLayerId(R.id.background) as GradientDrawable
         background.setColor(ColorUtil.getMaterialDarkColor(context, index))
