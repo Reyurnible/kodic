@@ -11,6 +11,10 @@
     <color name="primary_text_inverse">#FFFFFF</color>
     <color name="secondary_text">#727272</color>
     <color name="secondary_text_inverse">#CCCCCC</color>
+
+    <!-- Activity / Fragment background -->
+    <color name="display_background">#EAEAEA</color>
+
     <!-- Divider -->
     <color name="divider">#B6B6B6</color>
 
