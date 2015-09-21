@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/display_background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,13 +20,13 @@
             android:id="@+id/translate_spinner_case"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" android:spinnerMode="dropdown"/>
 
         <Spinner
             android:id="@+id/translate_spinner_acronym"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" android:spinnerMode="dropdown"/>
 
     </LinearLayout>
 
@@ -33,12 +35,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@android:color/transparent"
+        android:background="@android:color/white"
+        android:gravity="left|top"
         android:lines="6"
         android:paddingBottom="@dimen/element_spacing_normal"
         android:paddingLeft="@dimen/element_spacing_xlarge"
         android:paddingRight="@dimen/element_spacing_xlarge"
-        android:paddingTop="@dimen/element_spacing_normal"/>
+        android:paddingTop="@dimen/element_spacing_normal"
+        android:textColor="@color/secondary_text"
+        tools:text="translate text"/>
 
     <Button
         android:id="@+id/translate_button"
@@ -46,11 +51,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/translate_button"/>
+        android:text="@string/translate_button" android:background="@drawable/btn_primary"
+        android:textColor="@color/primary_text_inverse"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/translate_recyclerview_result"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/element_spacing_normal"/>
 

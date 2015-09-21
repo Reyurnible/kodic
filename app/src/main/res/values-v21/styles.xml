@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Project List Item -->
+    <style name="AppTheme.ProjectItem"/>
+    <style name="AppTheme.ProjectItem.CardView">
+    </style>
+
+
+
+</resources>

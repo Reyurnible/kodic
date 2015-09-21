@@ -1,21 +1,25 @@
 package com.hosshan.android.godicparents.component.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import butterknife.bindView
 import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
+import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.godicparents.model.TranslatedText
 import com.hosshan.android.godicparents.store.adapter.TranslateStoreAdapter
+import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
-import kotlin.platform.platformStatic
+import rx.schedulers.Schedulers
 import kotlin.properties.Delegates
 
 /**
@@ -77,8 +81,7 @@ public class TranslateFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val caseAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, cases)
-        caseSpinner.adapter = caseAdapter
+        caseSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, cases)
         caseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -93,11 +96,14 @@ public class TranslateFragment : BaseFragment() {
             }
         }
 
-        val acronymAdapter: ArrayAdapter<String> = ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, acronym)
-        acronymSpinner.adapter = acronymAdapter
+        acronymSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, acronym)
         acronymSpinner.visibility = View.GONE
 
         button.setOnClickListener {
+            // Close Keyboard
+            val inputMethodManager: InputMethodManager? = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager?.hideSoftInputFromWindow(editText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)
+
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.selectedItemPosition == 0) {
                 observableTranslatedText = TranslateStoreAdapter.getTranslate(activity, editText.text.toString(), projectId!!)
@@ -106,17 +112,21 @@ public class TranslateFragment : BaseFragment() {
             }
             observableTranslatedText
                     .lift(OperatorAddToCompositeSubscription<List<TranslatedText>>(compositeSubscription))
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object : Subscriber<List<TranslatedText>>() {
                         override fun onError(e: Throwable?) {
-
+                            if (e is RetrofitError) {
+                                Toast.makeText(activity, e.response.toString(), Toast.LENGTH_SHORT).show()
+                            }
                         }
 
                         override fun onCompleted() {
-
+                            editText.setText("")
                         }
 
                         override fun onNext(items: List<TranslatedText>?) {
-                            adapter.addAll(items)
+                            adapter.insertAll(0, items)
                         }
                     })
         }

@@ -36,5 +36,18 @@
     <dimen name="text_size_body">14sp</dimen>
     <dimen name="text_size_caption">12sp</dimen>
     <dimen name="text_size_button">14sp</dimen>
+    <!-- Shape -->
+    <!-- Shape: Button -->
+    <dimen name="button_radius">2dp</dimen>
+    <dimen name="button_padding_horizontal">8dp</dimen>
+    <dimen name="button_padding_vertical">4dp</dimen>
+    <dimen name="button_inset_action_pressed">2dp</dimen>
+    <dimen name="button_inset_action_hovered">1dp</dimen>
+    <!-- Shape: Stroke -->
+    <dimen name="button_stroke_width">2dp</dimen>
+
+    <!-- Project -->
+    <dimen name="project_card_size">240dp</dimen>
+
 
 </resources>
