@@ -10,13 +10,16 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import butterknife.bindView
+import com.bumptech.glide.Glide
 import com.hosshan.android.godicparents.R
 import com.hosshan.android.godicparents.component.activity.BaseActivity
 import com.hosshan.android.godicparents.component.fragment.TranslateFragment
 import com.hosshan.android.godicparents.model.Project
 import com.hosshan.android.godicparents.util.ColorUtil
+import jp.wasabeef.glide.transformations.BlurTransformation
 import java.util.*
 import kotlin.text.Regex
 
@@ -40,6 +43,10 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
 
         holder?.icon?.text = createIconName(item.name)
         holder?.icon?.background = createDrawable(activity, item.name)
+        Glide.with(activity)
+                .load(R.mipmap.img_triangles)
+                .bitmapTransform(BlurTransformation(activity, 8))
+                .into(holder?.backImage);
         holder?.name?.text = item.name
         holder?.description?.text = item.description
         holder?.description?.visibility = if (TextUtils.isEmpty(item.description)) View.GONE else View.VISIBLE
@@ -75,6 +82,7 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val icon: TextView by bindView(R.id.project_item_text_icon)
+        val backImage: ImageView by bindView(R.id.project_item_image_back)
         val name: TextView by bindView(R.id.project_item_text_name)
         val description: TextView by bindView(R.id.project_item_text_description)
         val owner: TextView by bindView(R.id.project_item_text_owner)
