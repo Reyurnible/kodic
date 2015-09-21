@@ -9,7 +9,6 @@
     <!-- Project List Item -->
     <style name="AppTheme.ProjectItem"/>
     <style name="AppTheme.ProjectItem.CardView">
-        <item name="android:background">@android:color/white</item>
     </style>
 
 

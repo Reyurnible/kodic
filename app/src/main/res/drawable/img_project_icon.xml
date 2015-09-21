@@ -9,8 +9,8 @@
     </item>
     <item android:id="@+id/content"
           android:bottom="@dimen/element_spacing_tiny"
-          android:right="@dimen/element_spacing_tiny"
           android:left="@dimen/element_spacing_tiny"
+          android:right="@dimen/element_spacing_tiny"
           android:top="@dimen/element_spacing_tiny">
         <shape android:shape="oval">
             <solid android:color="@color/primary"/>
