@@ -2,9 +2,7 @@ package com.hosshan.android.godicparents.component.adapter
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
-import java.util.ArrayList
-import java.util.Collections
-import java.util.Comparator
+import java.util.*
 
 /**
  * Created by shunhosaka on 15/09/12.
@@ -26,9 +24,16 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val 
         return this.items.indexOf(item)
     }
 
-    public fun insert(item: T, index: Int) {
+    public fun insert(index: Int, item: T) {
         this.items.add(index, item)
         notifyDataSetChanged()
+    }
+
+    public fun insertAll(index: Int, items: Collection<T>?) {
+        items?.let {
+            this.items.addAll(index, items!!)
+            notifyDataSetChanged()
+        }
     }
 
     public fun add(item: T) {
@@ -39,8 +44,8 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val 
     public fun addAll(items: Collection<T>?) {
         items?.let {
             this.items.addAll(items!!)
+            notifyDataSetChanged()
         }
-        notifyDataSetChanged()
     }
 
     public fun remove(index: Int) {
