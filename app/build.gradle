@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.hosshan.android.godicparents"
+        applicationId "com.hosshan.android.kodic"
         versionCode 1
         versionName "1.0"
         minSdkVersion 15
@@ -56,25 +56,9 @@ dependencies {
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'com.cookpad.android.rxt4a:rxt4a:0.10.0'
     compile "com.jakewharton.rxbinding:rxbinding:$rxBindingVersion"
-    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxBindingVersion"
-    compile("com.jakewharton.rxbinding:rxbinding-support-v4:$rxBindingVersion") {
-        exclude module: 'support-v4'
-    }
-    compile("com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxBindingVersion") {
-        exclude module: 'support-v4'
-    }
-    compile("com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rxBindingVersion") {
-        exclude module: 'appcompat-v7'
-    }
-    /*compile ("com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RxBindingVersion") {
-        exclude module: 'appcompat-v7'
-    }*/
-    compile("com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$rxBindingVersion") {
-        exclude module: 'appcompat-v7'
-    }
-    compile("com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$rxBindingVersion") {
-        exclude module: 'appcompat-v7'
-    }
+    compile "com.jakewharton.rxbinding:rxbinding-support-v4:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$rxBindingVersion"
 
     // Retrofit
     compile 'com.squareup.retrofit:retrofit:1.9.0'
