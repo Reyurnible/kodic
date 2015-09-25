@@ -1,8 +1,9 @@
-# GodicParent
+# Kodic
 
 ## About
-CodicのAndroidアプリケーション。
-[Codic APIリファレンス](https://codic.jp/docs/api)
+Kotlin meets Codic
+This is sample kotlin app for using Codic API.
+[Codic API References](https://codic.jp/docs/api)
 
 ## Pattern
 
