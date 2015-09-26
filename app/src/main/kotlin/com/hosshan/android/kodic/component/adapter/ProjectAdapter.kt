@@ -2,6 +2,7 @@ package com.hosshan.android.kodic.component.adapter
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
@@ -16,6 +17,7 @@ import butterknife.bindView
 import com.bumptech.glide.Glide
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.activity.BaseActivity
+import com.hosshan.android.kodic.component.activity.DetailsActivity
 import com.hosshan.android.kodic.component.fragment.TranslateFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.util.ColorUtil
@@ -52,8 +54,9 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
         holder?.description?.visibility = if (TextUtils.isEmpty(item.description)) View.GONE else View.VISIBLE
         holder?.owner?.text = item.owner.name
         holder?.itemView?.setOnClickListener {
-            if (activity is BaseActivity) {
-                activity.addContentFragment(R.id.main_layout_container, TranslateFragment.newInstance(item.id))
+            activity?.let {
+                val intent: Intent = DetailsActivity.createIntent(activity!!, item.name, TranslateFragment::class.java, TranslateFragment.createArg(item.id))
+                activity?.startActivity(intent)
             }
         }
     }

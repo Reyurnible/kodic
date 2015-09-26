@@ -30,11 +30,15 @@ public class TranslateFragment : BaseFragment() {
     companion object {
         val KEY_PROJECT_ID: String = "project_id"
 
-        @JvmStatic public fun newInstance(projectId: Int): TranslateFragment {
-            val fragment: TranslateFragment = TranslateFragment()
+        @JvmStatic public fun createArg(projectId: Int): Bundle {
             val args: Bundle = Bundle()
             args.putInt(KEY_PROJECT_ID, projectId)
-            fragment.arguments = args
+            return args
+        }
+
+        @JvmStatic public fun newInstance(projectId: Int): TranslateFragment {
+            val fragment: TranslateFragment = TranslateFragment()
+            fragment.arguments = createArg(projectId)
             return fragment
         }
     }
