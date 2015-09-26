@@ -23,7 +23,7 @@ public class MainActivity : BaseActivity() {
     val navigationView: NavigationView by bindView(R.id.main_navigation_view)
     val toolbar: Toolbar by bindView(R.id.main_toolbar)
 
-    var actionBarDrawerToggle: ActionBarDrawerToggle by Delegates.notNull()
+    var drawerToggle: ActionBarDrawerToggle by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,31 +37,15 @@ public class MainActivity : BaseActivity() {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START) else drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        actionBarDrawerToggle = ActionBarDrawerToggle(this,
+        drawerToggle = ActionBarDrawerToggle(this,
                 drawerLayout,
                 toolbar,
                 R.string.drawer_open,
-                R.string.drawer_close);
+                R.string.drawer_close)
+        //TODO Kotlinの拡張関数を利用してListenerの処理を上書きする
 
         // Setting NavigationDrawer
-        drawerLayout.setDrawerListener(
-                object : DrawerLayout.DrawerListener {
-                    override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
-                        Timber.d("onDrawerSlide")
-                    }
-
-                    override fun onDrawerOpened(drawerView: View?) {
-                        Timber.d("onDrawerOpened")
-                    }
-
-                    override fun onDrawerClosed(drawerView: View?) {
-                        Timber.d("onDrawerClosed")
-                    }
-
-                    override fun onDrawerStateChanged(newState: Int) {
-                        Timber.d("onDrawerStateChanged")
-                    }
-                })
+        drawerLayout.setDrawerListener(drawerToggle)
 
         navigationView.setNavigationItemSelectedListener (
                 object : NavigationView.OnNavigationItemSelectedListener {
