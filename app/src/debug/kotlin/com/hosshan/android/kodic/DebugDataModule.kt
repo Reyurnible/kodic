@@ -10,6 +10,8 @@ import com.squareup.okhttp.OkHttpClient
 import dagger.Module
 import dagger.Provides
 import retrofit.Endpoint
+import retrofit.Endpoints
+import retrofit.RequestInterceptor
 import retrofit.RestAdapter
 import retrofit.client.OkClient
 import retrofit.converter.GsonConverter
@@ -22,12 +24,14 @@ import javax.inject.Named
 @Module(includes = arrayOf(ApiModule::class, StoreModule::class))
 public class DebugDataModule {
 
-    @Provides
-    fun provideSharedPreferences(app: Application): SharedPreferences =
-            app.getSharedPreferences("kodic_debug", Context.MODE_PRIVATE)
+    companion object {
+        // If your project want to change endpoint, dividing ApiModule.
+        @JvmStatic val CODIC_API_URL: String = "https://api.codic.jp"
+    }
 
     @Provides
-    fun provideGson(): Gson = GsonBuilder().create()
+    @Named("Api")
+    fun provideApiClient(client: OkHttpClient): OkHttpClient = client.clone()
 
     @Provides
     public fun provideOkHttpClient(app: Application): OkHttpClient {
@@ -36,17 +40,31 @@ public class DebugDataModule {
     }
 
     @Provides
-    @Named("Api")
-    fun provideApiClient(client: OkHttpClient): OkHttpClient = client.clone()
+    fun provideEndpoint(): Endpoint = Endpoints.newFixedEndpoint(CODIC_API_URL)
 
     @Provides
-    fun provideRestAdapter(endpoint: Endpoint, @Named("Api") client: OkHttpClient, gson: Gson): RestAdapter =
+    fun provideGson(): Gson = GsonBuilder().create()
+
+    @Provides
+    fun provideRequestInterceptor(): RequestInterceptor {
+        val requestInterceptor: RequestInterceptor = RequestInterceptor {
+            it.addHeader("Authorization", "Bearer " + "bHEdExeRcKaUS8nnYhDbRsLPUuEN1FPV2");
+        }
+        return requestInterceptor
+    }
+
+    @Provides
+    fun provideRestAdapter(@Named("Api") client: OkHttpClient, endpoint: Endpoint, gson: Gson, requestInterceptor: RequestInterceptor): RestAdapter =
             RestAdapter.Builder()
                     .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setClient(OkClient(client))
                     .setEndpoint(endpoint)
                     .setConverter(GsonConverter(gson))
+                    .setRequestInterceptor(requestInterceptor)
                     .build()
 
+    @Provides
+    fun provideSharedPreferences(app: Application): SharedPreferences =
+            app.getSharedPreferences("kodic_debug", Context.MODE_PRIVATE)
 
 }

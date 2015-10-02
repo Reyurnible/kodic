@@ -14,14 +14,6 @@ import retrofit.RestAdapter
 @Module
 public class ApiModule {
 
-    companion object {
-        // If your project want to change endpoint, dividing ApiModule.
-        @JvmStatic val CODIC_API_URL: String = "https://api.codic.jp"
-    }
-
-    @Provides
-    fun provideEndpoint(): Endpoint = Endpoints.newFixedEndpoint(CODIC_API_URL)
-
     @Provides
     fun provideCodicCedService(restAdapter: RestAdapter): CodicCedService =
             restAdapter.create(CodicCedService::class.java)
