@@ -16,6 +16,7 @@ import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.store.codic.UserStore
 import rx.Subscriber
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -44,10 +45,8 @@ public class ProjectListFragment : BaseFragment() {
         adapter = ProjectAdapter(activity)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater?.inflate(R.layout.fragment_project_list, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater?.inflate(R.layout.fragment_project_list, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,11 +67,9 @@ public class ProjectListFragment : BaseFragment() {
                     }
 
                     override fun onError(e: Throwable?) {
-
                     }
 
                     override fun onNext(items: List<Project>?) {
-                        recyclerView.setBackgroundColor(Color.RED)
                         adapter.addAll(items)
                     }
                 })

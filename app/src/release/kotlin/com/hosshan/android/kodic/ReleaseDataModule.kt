@@ -42,7 +42,7 @@ public class ReleaseDataModule {
     fun provideEndpoint(): Endpoint = Endpoints.newFixedEndpoint(CODIC_API_URL)
 
     @Provides
-    fun provideGson(): Gson = GsonBuilder().create()
+    fun provideGson(): Gson = GsonUtil.getInstance()
 
     @Provides
     fun provideRequestInterceptor(app: android.app.Application): RequestInterceptor =

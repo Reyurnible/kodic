@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hosshan.android.kodic.store.StoreModule
+import com.hosshan.android.kodic.util.GsonUtil
 import com.squareup.okhttp.OkHttpClient
 import dagger.Module
 import dagger.Provides
@@ -43,7 +44,7 @@ public class DebugDataModule {
     fun provideEndpoint(): Endpoint = Endpoints.newFixedEndpoint(CODIC_API_URL)
 
     @Provides
-    fun provideGson(): Gson = GsonBuilder().create()
+    fun provideGson(): Gson = GsonUtil.getInstance()
 
     @Provides
     fun provideRequestInterceptor(): RequestInterceptor =
