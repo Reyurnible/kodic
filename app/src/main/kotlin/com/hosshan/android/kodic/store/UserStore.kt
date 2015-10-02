@@ -10,16 +10,16 @@ import kotlin.platform.platformStatic
 /**
  * Created by shunhosaka on 15/09/12.
  */
-public class ProjectStoreAdapter {
+public class UserStore {
 
     companion object {
-        platformStatic fun getProject(context: Context, id: Int): Observable<Project?>
+        @JvmStatic fun getProject(context: Context, id: Int): Observable<Project?>
                 = CodicRetrofitUtil
                 .buildRestAdapter(context)
                 .create(javaClass<CodicService>())
                 .getProject(id)
 
-        platformStatic fun getProjectList(context: Context): Observable<List<Project>>
+        @JvmStatic fun getProjectList(context: Context): Observable<List<Project>>
                 = CodicRetrofitUtil
                 .buildRestAdapter(context)
                 .create(javaClass<CodicService>())

@@ -12,7 +12,7 @@ import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.ProjectAdapter
 import com.hosshan.android.kodic.model.Project
-import com.hosshan.android.kodic.store.ProjectStoreAdapter
+import com.hosshan.android.kodic.store.UserStore
 import rx.Subscriber
 import kotlin.platform.platformStatic
 import kotlin.properties.Delegates
@@ -54,7 +54,7 @@ public class ProjectListFragment : BaseFragment() {
     }
 
     private fun getProjectList() {
-        ProjectStoreAdapter
+        UserStore
                 .getProjectList(activity)
                 .observeOn(AndroidSchedulers.mainThread())
                 .lift(OperatorAddToCompositeSubscription<List<Project>>(compositeSubscription))

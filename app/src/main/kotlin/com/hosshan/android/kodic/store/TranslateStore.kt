@@ -9,7 +9,7 @@ import rx.Observable
 /**
  * Created by shunhosaka on 15/09/14.
  */
-public class TranslateStoreAdapter {
+public class TranslateStore {
 
     companion object {
         @JvmStatic fun getTranslate(context: Context, text: String, projectId: Int, casing: String, acronymStyle: String): Observable<List<TranslatedText>>

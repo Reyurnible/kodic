@@ -11,7 +11,7 @@ import kotlin.platform.platformStatic
 /**
  * Created by shunhosaka on 15/09/16.
  */
-public class CedStoreAdapter {
+public class CedStore {
 
     companion object {
         @JvmStatic fun getCedLookup(context: Context, query: String, number: Int = 10): Observable<List<CedTitle>>
