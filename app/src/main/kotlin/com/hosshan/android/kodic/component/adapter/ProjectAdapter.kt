@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.activity.BaseActivity
 import com.hosshan.android.kodic.component.activity.DetailsActivity
-import com.hosshan.android.kodic.component.fragment.TranslateFragment
+import com.hosshan.android.kodic.component.fragment.translate.TranslateFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.util.ColorUtil
 import jp.wasabeef.glide.transformations.BlurTransformation

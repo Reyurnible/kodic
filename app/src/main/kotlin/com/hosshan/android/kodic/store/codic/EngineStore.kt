@@ -1,9 +1,7 @@
 package com.hosshan.android.kodic.store.codic
 
-import android.content.Context
 import com.hosshan.android.kodic.CodicEngineService
 import com.hosshan.android.kodic.model.TranslatedText
-import com.hosshan.android.kodic.util.CodicRetrofitUtil
 import rx.Observable
 
 /**
