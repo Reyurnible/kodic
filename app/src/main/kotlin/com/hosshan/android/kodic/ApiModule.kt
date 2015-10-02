@@ -4,8 +4,6 @@ import com.hosshan.android.kodic.store.service.CodicCedService
 import com.hosshan.android.kodic.store.service.CodicUserService
 import dagger.Module
 import dagger.Provides
-import retrofit.Endpoint
-import retrofit.Endpoints
 import retrofit.RestAdapter
 
 /**

@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.hosshan.android.kodic.store.StoreModule
 import com.hosshan.android.kodic.util.GsonUtil
 import com.squareup.okhttp.OkHttpClient
