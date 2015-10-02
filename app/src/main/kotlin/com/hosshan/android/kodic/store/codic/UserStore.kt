@@ -16,7 +16,7 @@ public class UserStore(val service: CodicUserService) {
     fun getProject(id: Int): Observable<Project?> =
             service.getProject(id)
 
-    fun getProjectList(context: Context): Observable<List<Project>> =
+    fun getProjectList(): Observable<List<Project>> =
             service.getProjectList()
 
 }
