@@ -1,6 +1,6 @@
 package com.hosshan.android.kodic.component.fragment.project
 
-import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -65,7 +65,6 @@ public class ProjectListFragment : BaseFragment() {
                 .lift(OperatorAddToCompositeSubscription<List<Project>>(compositeSubscription))
                 .subscribe(object : Subscriber<List<Project>>() {
                     override fun onCompleted() {
-
                     }
 
                     override fun onError(e: Throwable?) {
@@ -73,6 +72,7 @@ public class ProjectListFragment : BaseFragment() {
                     }
 
                     override fun onNext(items: List<Project>?) {
+                        recyclerView.setBackgroundColor(Color.RED)
                         adapter.addAll(items)
                     }
                 })
