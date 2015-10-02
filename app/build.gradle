@@ -65,6 +65,11 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
 
+    //DI dependencies
+    compile 'com.google.dagger:dagger:2.0.1'
+    kapt 'com.google.dagger:dagger-compiler:2.0.1'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
     // Image Loader
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'jp.wasabeef:glide-transformations:1.2.1'
@@ -83,6 +88,10 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
 
+}
+
+kapt {
+    generateStubs = true
 }
 
 repositories {
