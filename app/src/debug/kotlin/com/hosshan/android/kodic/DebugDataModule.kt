@@ -1,5 +1,22 @@
 package com.hosshan.android.kodic
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.hosshan.android.kodic.store.StoreModule
+import com.squareup.okhttp.OkHttpClient
+import dagger.Module
+import dagger.Provides
+import retrofit.Endpoint
+import retrofit.Endpoints
+import retrofit.RequestInterceptor
+import retrofit.RestAdapter
+import retrofit.client.OkClient
+import retrofit.converter.GsonConverter
+import javax.inject.Named
+
 
 /**
  * Created by shunhosaka on 15/10/02.
