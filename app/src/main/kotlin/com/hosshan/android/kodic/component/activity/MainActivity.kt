@@ -10,7 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import butterknife.bindView
 import com.hosshan.android.kodic.R
-import com.hosshan.android.kodic.component.fragment.ProjectListFragment
+import com.hosshan.android.kodic.component.fragment.project.ProjectListFragment
 import timber.log.Timber
 import kotlin.properties.Delegates
 

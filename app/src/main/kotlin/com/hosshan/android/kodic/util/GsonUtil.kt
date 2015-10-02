@@ -15,9 +15,5 @@ public class GsonUtil {
             builder.setDateFormat("EEE, d MMM yyyy HH:mm:ss Z")
             return builder.create()
         }
-
-        @JvmStatic fun getRetrofitConverter(): GsonConverter {
-            return GsonConverter(getInstance())
-        }
     }
 }

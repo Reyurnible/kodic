@@ -1,4 +1,4 @@
-package com.hosshan.android.kodic.component.fragment
+package com.hosshan.android.kodic.component.fragment.translate
 
 import android.content.Context
 import android.os.Bundle
@@ -14,12 +14,14 @@ import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
+import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.TranslatedText
-import com.hosshan.android.kodic.store.adapter.TranslateStoreAdapter
+import com.hosshan.android.kodic.store.codic.EngineStore
 import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
 import rx.schedulers.Schedulers
+import javax.inject.Inject
 import kotlin.properties.Delegates
 
 /**
@@ -51,6 +53,7 @@ public class TranslateFragment : BaseFragment() {
     val resultRecyclerView: RecyclerView by bindView(R.id.translate_recyclerview_result)
 
     var adapter: TranslatedTextAdapter by Delegates.notNull()
+    @Inject lateinit val engineStore: EngineStore
 
     private val cases: List<String> = arrayListOf(
             "none",
@@ -74,6 +77,7 @@ public class TranslateFragment : BaseFragment() {
         if (projectId == null) {
             activity?.finish()
         }
+        TranslateComponent.Initializer.init(activity).inject(this)
         adapter = TranslatedTextAdapter(activity)
     }
 
@@ -110,9 +114,9 @@ public class TranslateFragment : BaseFragment() {
 
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.selectedItemPosition == 0) {
-                observableTranslatedText = TranslateStoreAdapter.getTranslate(activity, editText.text.toString(), projectId!!)
+                observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId!!)
             } else {
-                observableTranslatedText = TranslateStoreAdapter.getTranslate(activity, editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
+                observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
             }
             observableTranslatedText
                     .lift(OperatorAddToCompositeSubscription<List<TranslatedText>>(compositeSubscription))
