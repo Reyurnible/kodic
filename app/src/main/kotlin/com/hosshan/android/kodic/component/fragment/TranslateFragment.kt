@@ -15,7 +15,7 @@ import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.kodic.model.TranslatedText
-import com.hosshan.android.kodic.store.adapter.TranslateStore
+import com.hosshan.android.kodic.store.adapter.EngineStore
 import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
@@ -110,9 +110,9 @@ public class TranslateFragment : BaseFragment() {
 
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.selectedItemPosition == 0) {
-                observableTranslatedText = TranslateStore.getTranslate(activity, editText.text.toString(), projectId!!)
+                observableTranslatedText = EngineStore.getTranslate(activity, editText.text.toString(), projectId!!)
             } else {
-                observableTranslatedText = TranslateStore.getTranslate(activity, editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
+                observableTranslatedText = EngineStore.getTranslate(activity, editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
             }
             observableTranslatedText
                     .lift(OperatorAddToCompositeSubscription<List<TranslatedText>>(compositeSubscription))
