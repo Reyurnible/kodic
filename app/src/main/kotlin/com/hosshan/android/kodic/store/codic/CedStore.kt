@@ -1,13 +1,9 @@
-package com.hosshan.android.kodic.store.adapter
+package com.hosshan.android.kodic.store.codic
 
-import android.content.Context
-import com.hosshan.android.kodic.CodicEngineService
 import com.hosshan.android.kodic.model.CedEntry
 import com.hosshan.android.kodic.model.CedTitle
 import com.hosshan.android.kodic.store.service.CodicCedService
-import com.hosshan.android.kodic.util.CodicRetrofitUtil
 import rx.Observable
-import kotlin.platform.platformStatic
 
 /**
  * Created by shunhosaka on 15/09/16.
