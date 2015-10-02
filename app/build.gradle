@@ -16,7 +16,7 @@ android {
     }
     buildTypes {
         debug {
-
+            applicationIdSuffix '.debug'
         }
         release {
             minifyEnabled false
@@ -35,6 +35,8 @@ android {
             assets.srcDirs = ['assets']
         }
         main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
     }
     lintOptions {
         abortOnError false
@@ -94,7 +96,6 @@ dependencies {
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
-
 }
 
 kapt {
