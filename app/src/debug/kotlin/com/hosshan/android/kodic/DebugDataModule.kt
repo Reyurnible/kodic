@@ -1,22 +1,5 @@
 package com.hosshan.android.kodic
 
-import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.hosshan.android.kodic.store.StoreModule
-import com.squareup.okhttp.OkHttpClient
-import dagger.Module
-import dagger.Provides
-import retrofit.Endpoint
-import retrofit.Endpoints
-import retrofit.RequestInterceptor
-import retrofit.RestAdapter
-import retrofit.client.OkClient
-import retrofit.converter.GsonConverter
-import javax.inject.Named
-
 
 /**
  * Created by shunhosaka on 15/10/02.
@@ -46,12 +29,10 @@ public class DebugDataModule {
     fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
-    fun provideRequestInterceptor(): RequestInterceptor {
-        val requestInterceptor: RequestInterceptor = RequestInterceptor {
-            it.addHeader("Authorization", "Bearer " + "bHEdExeRcKaUS8nnYhDbRsLPUuEN1FPV2");
-        }
-        return requestInterceptor
-    }
+    fun provideRequestInterceptor(): RequestInterceptor =
+            RequestInterceptor {
+                it.addHeader("Authorization", "Bearer " + "bHEdExeRcKaUS8nnYhDbRsLPUuEN1FPV2");
+            }
 
     @Provides
     fun provideRestAdapter(@Named("Api") client: OkHttpClient, endpoint: Endpoint, gson: Gson, requestInterceptor: RequestInterceptor): RestAdapter =
