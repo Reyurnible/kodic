@@ -1,6 +1,5 @@
 package com.hosshan.android.kodic.component.fragment.project
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -16,7 +15,6 @@ import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.store.codic.UserStore
 import rx.Subscriber
-import timber.log.Timber
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -37,7 +35,7 @@ public class ProjectListFragment : BaseFragment() {
     val recyclerView: RecyclerView by bindView(R.id.project_list_recyclerview)
     var adapter: ProjectAdapter by Delegates.notNull()
 
-    @Inject lateinit val userStore: UserStore
+    @Inject lateinit var userStore: UserStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +44,7 @@ public class ProjectListFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater?.inflate(R.layout.fragment_project_list, container, false)
+            inflater?.inflate(R.layout.fragment_project_list, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

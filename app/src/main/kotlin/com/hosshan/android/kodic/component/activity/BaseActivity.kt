@@ -9,19 +9,19 @@ import android.support.v7.app.AppCompatActivity
  */
 public open class BaseActivity : AppCompatActivity() {
 
-    fun setContentFragment(IdRes resourceId: Int, fragment: Fragment?) {
+    fun setContentFragment(@IdRes resourceId: Int, fragment: Fragment?) {
         fragment?.let {
-            supportFragmentManager?.beginTransaction()?.replace(resourceId, fragment)?.commit()
+            supportFragmentManager?.beginTransaction()?.replace(resourceId, it)?.commit()
         }
     }
 
-    fun addContentFragment(IdRes resourceId: Int, fragment: Fragment?) {
+    fun addContentFragment(@IdRes resourceId: Int, fragment: Fragment?) {
         fragment?.let {
-            supportFragmentManager?.beginTransaction()?.add(resourceId, fragment)?.commit()
+            supportFragmentManager?.beginTransaction()?.add(resourceId, it)?.commit()
         }
     }
 
-    fun getContentFragment(IdRes resourceId: Int): Fragment? {
+    fun getContentFragment(@IdRes resourceId: Int): Fragment? {
         return supportFragmentManager.findFragmentById(resourceId)
     }
 
@@ -31,7 +31,7 @@ public open class BaseActivity : AppCompatActivity() {
 
     fun addFragment(tag: String, fragment: Fragment) {
         fragment?.let {
-            supportFragmentManager?.beginTransaction()?.add(fragment, tag)?.commit()
+            supportFragmentManager?.beginTransaction()?.add(it, tag)?.commit()
         }
     }
 
