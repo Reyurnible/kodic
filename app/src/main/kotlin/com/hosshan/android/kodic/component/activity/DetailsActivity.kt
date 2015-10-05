@@ -14,9 +14,9 @@ import com.hosshan.android.kodic.R
 public class DetailsActivity : BaseActivity() {
 
     companion object {
-        private val EXTRA_TITLE: String = "extra_title"
-        private val EXTRA_FRAGMENT_CLASS: String = "extra_fragment_class"
-        private val EXTRA_FRAGMENT_ARG: String = "extra_fragment_arg"
+        const val EXTRA_TITLE: String = "extra_title"
+        const val EXTRA_FRAGMENT_CLASS: String = "extra_fragment_class"
+        const val EXTRA_FRAGMENT_ARG: String = "extra_fragment_arg"
 
         @JvmStatic fun createIntent<T : Fragment>(context: Context, title: String?, fragmentClass: Class<T>, fragmentArg: Bundle?): Intent {
             val intent: Intent = Intent(context, DetailsActivity::class.java)
@@ -54,7 +54,7 @@ public class DetailsActivity : BaseActivity() {
             fragment?.arguments = intent.getParcelableExtra(EXTRA_FRAGMENT_ARG)
         }
         fragment?.let {
-            setContentFragment(R.id.details_layout_container, fragment)
+            setContentFragment(R.id.details_layout_container, it)
         }
 
 
