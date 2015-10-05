@@ -53,7 +53,7 @@ public class TranslateFragment : BaseFragment() {
     val resultRecyclerView: RecyclerView by bindView(R.id.translate_recyclerview_result)
 
     var adapter: TranslatedTextAdapter by Delegates.notNull()
-    @Inject lateinit val engineStore: EngineStore
+    @Inject lateinit var engineStore: EngineStore
 
     private val cases: List<String> = arrayListOf(
             "none",
