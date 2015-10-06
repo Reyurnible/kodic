@@ -15,12 +15,12 @@ interface LoginComponent {
 
     object Initializer {
 
-        fun init(activity: Activity): LoginComponent {
-            return DaggerLoginComponent.builder()
-                    .appComponent((activity.application as DaggerApplication).appComponent)
-                    .loginModule(LoginModule())
-                    .build()
-        }
+        fun init(activity: Activity): LoginComponent =
+                DaggerLoginComponent.builder()
+                        .appComponent((activity.application as DaggerApplication).appComponent)
+                        .loginModule(LoginModule())
+                        .build()
+
     }
 
 }

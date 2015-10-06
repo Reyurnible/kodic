@@ -9,18 +9,18 @@ import dagger.Component
  * Created by shunhosaka on 15/10/03.
  */
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(TranslateModule::class))
-public interface TranslateComponent {
+interface TranslateComponent {
 
-    public fun inject(fragment: TranslateFragment)
+    fun inject(fragment: TranslateFragment)
 
-    public object Initializer {
+    object Initializer {
 
-        public fun init(activity: Activity): TranslateComponent {
-            return DaggerTranslateComponent.builder()
-                    .appComponent((activity.application as DaggerApplication).appComponent)
-                    .translateModule(TranslateModule())
-                    .build()
-        }
+        fun init(activity: Activity): TranslateComponent =
+                DaggerTranslateComponent.builder()
+                        .appComponent((activity.application as DaggerApplication).appComponent)
+                        .translateModule(TranslateModule())
+                        .build()
+
     }
 
 

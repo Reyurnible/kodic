@@ -1,5 +1,6 @@
 package com.hosshan.android.kodic.component.fragment.project
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -37,9 +38,13 @@ public class ProjectListFragment : BaseFragment() {
 
     @Inject lateinit var userStore: UserStore
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        ProjectComponent.Initializer.init(activity).inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ProjectComponent.Initializer.init(activity!!).inject(this)
         adapter = ProjectAdapter(activity)
     }
 

@@ -70,6 +70,11 @@ public class TranslateFragment : BaseFragment() {
             "literal"
     )
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        TranslateComponent.Initializer.init(activity).inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args: Bundle? = arguments
@@ -77,7 +82,6 @@ public class TranslateFragment : BaseFragment() {
         if (projectId == null) {
             activity?.finish()
         }
-        TranslateComponent.Initializer.init(activity).inject(this)
         adapter = TranslatedTextAdapter(activity)
     }
 
