@@ -2,6 +2,7 @@ package com.hosshan.android.kodic.store.realm
 
 import com.hosshan.android.kodic.data.realm.TranslatedHistory
 import com.hosshan.android.kodic.model.TranslatedText
+import com.hosshan.android.kodic.util.GsonUtil
 import io.realm.Realm
 import java.util.*
 
@@ -15,7 +16,7 @@ public class TranslatedStore(val realm: Realm) {
     fun saveTranslatedHistory(translatedText: TranslatedText) {
         realm.use {
             it.executeTransaction {
-                val translatedHistory = TranslatedHistory(Date(), translatedText)
+                val translatedHistory = TranslatedHistory(Date(), GsonUtil.getInstance().toJson(translatedText))
                 realm.copyToRealm(translatedHistory)
             }
         }

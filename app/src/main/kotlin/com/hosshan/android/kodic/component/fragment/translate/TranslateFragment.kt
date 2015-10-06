@@ -17,6 +17,7 @@ import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.TranslatedText
 import com.hosshan.android.kodic.store.codic.EngineStore
+import com.hosshan.android.kodic.store.realm.TranslatedStore
 import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
@@ -54,6 +55,7 @@ public class TranslateFragment : BaseFragment() {
 
     var adapter: TranslatedTextAdapter by Delegates.notNull()
     @Inject lateinit var engineStore: EngineStore
+    @Inject lateinit var translatedStore: TranslatedStore
 
     private val cases: List<String> = arrayListOf(
             "none",
@@ -111,6 +113,9 @@ public class TranslateFragment : BaseFragment() {
         acronymSpinner.adapter = ArrayAdapter<String>(activity, R.layout.item_translate_spinner_item, acronym)
         acronymSpinner.visibility = View.GONE
 
+        resultRecyclerView.layoutManager = LinearLayoutManager(activity)
+        resultRecyclerView.adapter = adapter
+
         button.setOnClickListener {
             // Close Keyboard
             val inputMethodManager: InputMethodManager? = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -139,12 +144,12 @@ public class TranslateFragment : BaseFragment() {
 
                         override fun onNext(items: List<TranslatedText>?) {
                             adapter.insertAll(0, items)
+                            items?.forEach {
+                                translatedStore.saveTranslatedHistory(it)
+                            }
                         }
                     })
         }
-
-        resultRecyclerView.layoutManager = LinearLayoutManager(activity)
-        resultRecyclerView.adapter = adapter
     }
 
 }

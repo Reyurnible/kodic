@@ -10,6 +10,6 @@ import java.util.*
  */
 @RealmClass
 public open class TranslatedHistory(
-        public open var createdAt: Date,
-        public open var translatedText: TranslatedText
+        public open val createdAt: Date,
+        public open val translatedText: String
 ) : RealmObject()
