@@ -65,4 +65,7 @@ public class ReleaseDataModule {
     fun provideSharedPreferences(app: Application): SharedPreferences =
             app.getSharedPreferences("kodic", Context.MODE_PRIVATE)
 
+    @Provides
+    fun provideRealm(): Realm =
+            Realm.getDefaultInstance()
 }

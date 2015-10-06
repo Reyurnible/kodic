@@ -4,6 +4,7 @@ import android.app.Application
 import com.hosshan.android.kodic.store.codic.CedStore
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.codic.UserStore
+import com.hosshan.android.kodic.store.realm.TranslatedStore
 
 /**
  * Created by shunhosaka on 15/10/03.
@@ -17,4 +18,6 @@ public interface  BaseAppComponent {
     public fun engineStore(): EngineStore
 
     public fun userStore(): UserStore
+
+    public fun translatedStore(): TranslatedStore
 }

@@ -1,5 +1,6 @@
-package com.hosshan.android.kodic
+package com.hosshan.android.kodic.store.codic.service
 
+import com.hosshan.android.kodic.CodicEngineService
 import com.hosshan.android.kodic.store.service.CodicCedService
 import com.hosshan.android.kodic.store.service.CodicUserService
 import dagger.Module

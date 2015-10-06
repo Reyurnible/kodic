@@ -4,10 +4,12 @@ import com.hosshan.android.kodic.CodicEngineService
 import com.hosshan.android.kodic.store.codic.CedStore
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.codic.UserStore
+import com.hosshan.android.kodic.store.realm.TranslatedStore
 import com.hosshan.android.kodic.store.service.CodicCedService
 import com.hosshan.android.kodic.store.service.CodicUserService
 import dagger.Module
 import dagger.Provides
+import io.realm.Realm
 
 /**
  * Created by shunhosaka on 15/10/03.
@@ -26,4 +28,9 @@ public class StoreModule {
     @Provides
     fun provideUserStore(codicUserService: CodicUserService): UserStore =
             UserStore(codicUserService)
+
+    @Provides
+    fun provideTranslatedStore(realm: Realm): TranslatedStore =
+            TranslatedStore(realm)
+
 }

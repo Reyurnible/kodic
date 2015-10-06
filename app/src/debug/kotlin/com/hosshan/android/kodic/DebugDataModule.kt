@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.hosshan.android.kodic.store.StoreModule
+import com.hosshan.android.kodic.store.codic.service.ApiModule
 import com.hosshan.android.kodic.util.GsonUtil
 import com.squareup.okhttp.OkHttpClient
 import dagger.Module
 import dagger.Provides
+import io.realm.Realm
 import retrofit.Endpoint
 import retrofit.Endpoints
 import retrofit.RequestInterceptor
@@ -64,5 +66,9 @@ public class DebugDataModule {
     @Provides
     fun provideSharedPreferences(app: Application): SharedPreferences =
             app.getSharedPreferences("kodic_debug", Context.MODE_PRIVATE)
+
+    @Provides
+    fun provideRealm(): Realm =
+            Realm.getDefaultInstance()
 
 }
