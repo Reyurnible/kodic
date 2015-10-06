@@ -1,6 +1,5 @@
 package com.hosshan.android.kodic.data.realm
 
-import com.hosshan.android.kodic.model.TranslatedText
 import io.realm.RealmObject
 import io.realm.annotations.RealmClass
 import java.util.*
@@ -10,6 +9,6 @@ import java.util.*
  */
 @RealmClass
 public open class TranslatedHistory(
-        public open val createdAt: Date,
-        public open val translatedText: String
-) : RealmObject()
+        public open var createdAt: Date = Date(),
+        public open var translatedText: String? = null
+) : RealmObject() {}

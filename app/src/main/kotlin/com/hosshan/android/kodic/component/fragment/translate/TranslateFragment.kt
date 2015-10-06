@@ -18,6 +18,7 @@ import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.TranslatedText
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.realm.TranslatedStore
+import com.hosshan.android.kodic.util.GsonUtil
 import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
@@ -149,6 +150,12 @@ public class TranslateFragment : BaseFragment() {
                             }
                         }
                     })
+        }
+
+        translatedStore.getTranslatedHistory().map {
+            it.translatedText?.let {
+                adapter.add(GsonUtil.getInstance().fromJson(it, TranslatedText::class.java))
+            }
         }
     }
 
