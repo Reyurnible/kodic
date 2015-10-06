@@ -97,9 +97,9 @@ public class TranslateFragment : BaseFragment() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 0) {
-                    acronymSpinner.setVisibility(View.GONE)
+                    acronymSpinner.visibility = View.GONE
                 } else {
-                    acronymSpinner.setVisibility(View.VISIBLE)
+                    acronymSpinner.visibility = View.VISIBLE
                 }
             }
         }
@@ -139,7 +139,7 @@ public class TranslateFragment : BaseFragment() {
                     })
         }
 
-        resultRecyclerView.layoutManager = LinearLayoutManager(getActivity())
+        resultRecyclerView.layoutManager = LinearLayoutManager(activity)
         resultRecyclerView.adapter = adapter
     }
 
