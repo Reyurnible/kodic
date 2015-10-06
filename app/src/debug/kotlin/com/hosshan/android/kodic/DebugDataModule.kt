@@ -68,7 +68,7 @@ public class DebugDataModule {
             app.getSharedPreferences("kodic_debug", Context.MODE_PRIVATE)
 
     @Provides
-    fun provideRealm(): Realm =
-            Realm.getDefaultInstance()
+    fun provideRealm(app : Application): Realm =
+            Realm.getInstance(app)
 
 }
