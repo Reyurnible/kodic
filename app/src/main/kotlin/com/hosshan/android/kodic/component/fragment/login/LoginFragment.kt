@@ -1,5 +1,6 @@
-package com.hosshan.android.kodic.component.fragment
+package com.hosshan.android.kodic.component.fragment.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -30,6 +31,12 @@ public class LoginFragment : Fragment() {
     val editText: EditText by bindView(R.id.login_edittext)
     val button: Button by bindView(R.id.login_button)
 
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        LoginComponent.Initializer.init(activity).inject(this)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? {
         val rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
 
@@ -37,6 +44,7 @@ public class LoginFragment : Fragment() {
             // TODO EditTextの内容を保存する
 
             val intent: Intent = Intent(activity, MainActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 
