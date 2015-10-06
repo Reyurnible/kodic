@@ -42,7 +42,6 @@ public class MainActivity : BaseActivity() {
                 toolbar,
                 R.string.drawer_open,
                 R.string.drawer_close)
-        //TODO Kotlinの拡張関数を利用してListenerの処理を上書きする
 
         // Setting NavigationDrawer
         drawerLayout.setDrawerListener(drawerToggle)
