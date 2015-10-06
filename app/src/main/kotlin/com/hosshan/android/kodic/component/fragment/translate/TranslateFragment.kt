@@ -89,7 +89,7 @@ public class TranslateFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        caseSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, cases)
+        caseSpinner.adapter = ArrayAdapter<String>(activity, R.layout.item_translate_spinner_item, cases)
         caseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -104,13 +104,13 @@ public class TranslateFragment : BaseFragment() {
             }
         }
 
-        acronymSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, acronym)
+        acronymSpinner.adapter = ArrayAdapter<String>(activity, R.layout.item_translate_spinner_item, acronym)
         acronymSpinner.visibility = View.GONE
 
         button.setOnClickListener {
             // Close Keyboard
             val inputMethodManager: InputMethodManager? = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager?.hideSoftInputFromWindow(editText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)
+            inputMethodManager?.hideSoftInputFromWindow(editText.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
 
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.selectedItemPosition == 0) {
