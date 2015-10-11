@@ -149,7 +149,7 @@ public class TranslateFragment : BaseFragment() {
                     })
         }
 
-        translatedStore.getTranslatedHistory(projectId!!).map {
+        translatedStore.getTranslatedHistory(projectId!!) .map {
             it.translatedText?.let {
                 adapter.add(it)
             }
