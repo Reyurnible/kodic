@@ -15,8 +15,10 @@ import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
+import com.hosshan.android.kodic.data.realm.toTranslatedText
 import com.hosshan.android.kodic.model.TranslatedText
 import com.hosshan.android.kodic.store.codic.EngineStore
+import com.hosshan.android.kodic.store.realm.TranslatedStore
 import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
@@ -54,6 +56,7 @@ public class TranslateFragment : BaseFragment() {
 
     var adapter: TranslatedTextAdapter by Delegates.notNull()
     @Inject lateinit var engineStore: EngineStore
+    @Inject lateinit var translatedStore: TranslatedStore
 
     private val cases: List<String> = arrayListOf(
             "none",
@@ -70,14 +73,16 @@ public class TranslateFragment : BaseFragment() {
             "literal"
     )
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        TranslateComponent.Initializer.init(activity).inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args: Bundle? = arguments
         projectId = args?.getInt(KEY_PROJECT_ID)
-        if (projectId == null) {
-            activity?.finish()
-        }
-        TranslateComponent.Initializer.init(activity).inject(this)
+        projectId ?: activity.finish()
         adapter = TranslatedTextAdapter(activity)
     }
 
@@ -89,7 +94,7 @@ public class TranslateFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        caseSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, cases)
+        caseSpinner.adapter = ArrayAdapter<String>(activity, R.layout.item_translate_spinner_item, cases)
         caseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -97,20 +102,23 @@ public class TranslateFragment : BaseFragment() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 0) {
-                    acronymSpinner.setVisibility(View.GONE)
+                    acronymSpinner.visibility = View.GONE
                 } else {
-                    acronymSpinner.setVisibility(View.VISIBLE)
+                    acronymSpinner.visibility = View.VISIBLE
                 }
             }
         }
 
-        acronymSpinner.adapter = ArrayAdapter<String>(getActivity(), R.layout.item_translate_spinner_item, acronym)
+        acronymSpinner.adapter = ArrayAdapter<String>(activity, R.layout.item_translate_spinner_item, acronym)
         acronymSpinner.visibility = View.GONE
+
+        resultRecyclerView.layoutManager = LinearLayoutManager(activity)
+        resultRecyclerView.adapter = adapter
 
         button.setOnClickListener {
             // Close Keyboard
             val inputMethodManager: InputMethodManager? = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager?.hideSoftInputFromWindow(editText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)
+            inputMethodManager?.hideSoftInputFromWindow(editText.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
 
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.selectedItemPosition == 0) {
@@ -135,12 +143,16 @@ public class TranslateFragment : BaseFragment() {
 
                         override fun onNext(items: List<TranslatedText>?) {
                             adapter.insertAll(0, items)
+                            items?.forEach {
+                                translatedStore.saveTranslatedHistory(projectId!!, it)
+                            }
                         }
                     })
         }
 
-        resultRecyclerView.layoutManager = LinearLayoutManager(getActivity())
-        resultRecyclerView.adapter = adapter
+        translatedStore.getTranslatedHistory(projectId!!).map {
+            adapter.add(it.toTranslatedText())
+        }
     }
 
 }

@@ -107,6 +107,10 @@ dependencies {
     compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rxBindingVersion"
     compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$rxBindingVersion"
 
+    // Realm
+    compile 'io.realm:realm-android:0.83.0'
+    kapt 'io.realm:realm-android:0.83.0'
+
     // Retrofit
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
