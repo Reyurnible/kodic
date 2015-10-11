@@ -12,10 +12,10 @@ public class TranslatedStore(val realm: Realm) {
 
     fun getTranslatedHistory() = realm.where(TranslatedHistory::class.java).findAll()
 
-    fun saveTranslatedHistory(translatedText: TranslatedText) {
+    fun saveTranslatedHistory(projectId: Int, translatedText: TranslatedText) {
         realm.use {
             it.executeTransaction {
-                val translatedHistory = translatedText.toTranslatedHistory()
+                val translatedHistory = translatedText.toTranslatedHistory(projectId)
                 realm.copyToRealm(translatedHistory)
             }
         }

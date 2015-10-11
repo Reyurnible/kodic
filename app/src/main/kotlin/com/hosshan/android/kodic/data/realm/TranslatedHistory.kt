@@ -11,6 +11,7 @@ import java.util.*
  */
 @RealmClass
 public open class TranslatedHistory(
+        public open var projectId: Int = -1,
         public open var createdAt: Date = Date(),
         public open var successful: Boolean = false,
         public open var text: String = "",
@@ -28,8 +29,9 @@ public inline fun TranslatedHistory.toTranslatedText(): TranslatedText =
         )
 
 // Realmのオブジェクトが後にできて、できた依存関係なのでこちらに拡張関数として書く
-public inline fun TranslatedText.toTranslatedHistory(): TranslatedHistory =
+public inline fun TranslatedText.toTranslatedHistory(projectId: Int): TranslatedHistory =
         TranslatedHistory(
+                projectId,
                 Date(),
                 this.successful,
                 this.text,

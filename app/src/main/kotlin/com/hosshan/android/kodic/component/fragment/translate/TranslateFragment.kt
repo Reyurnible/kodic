@@ -82,9 +82,7 @@ public class TranslateFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         val args: Bundle? = arguments
         projectId = args?.getInt(KEY_PROJECT_ID)
-        if (projectId == null) {
-            activity?.finish()
-        }
+        projectId ?: activity.finish()
         adapter = TranslatedTextAdapter(activity)
     }
 
@@ -146,7 +144,7 @@ public class TranslateFragment : BaseFragment() {
                         override fun onNext(items: List<TranslatedText>?) {
                             adapter.insertAll(0, items)
                             items?.forEach {
-                                translatedStore.saveTranslatedHistory(it)
+                                translatedStore.saveTranslatedHistory(projectId!!, it)
                             }
                         }
                     })
