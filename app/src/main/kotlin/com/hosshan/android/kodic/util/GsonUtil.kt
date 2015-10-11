@@ -16,7 +16,7 @@ public class GsonUtil {
             builder.setDateFormat("EEE, d MMM yyyy HH:mm:ss Z")
             builder.setExclusionStrategies(object : ExclusionStrategy {
                 override fun shouldSkipClass(clazz: Class<*>?): Boolean {
-                    return clazz?.declaringClass?.equals(RealmObject::class.java) ?: false
+                    return clazz?.declaringClass?.equals(RealmObject::class) ?: false
                 }
 
                 override fun shouldSkipField(f: FieldAttributes?): Boolean {
