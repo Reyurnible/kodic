@@ -40,22 +40,30 @@ util is app scope using utility.
 
 
 ## Using Library
+
 ### Database
 - realm
-## DI (Dependency Injection)
+
+### DI (Dependency Injection)
 - dagger
+
 ### Event
 - otto
+
 ### Font
 - calligraphy
+
 ### Image
 - glide
 - glide transformation
+
 ### Kotlin
 - kotlin
 - kotterknife
+
 ### Logger
 - timber
+
 ### Reactive
 - rxjava
 - rxt4a
@@ -67,10 +75,12 @@ util is app scope using utility.
 - rxbinding-support-v4-kotlin
 - rxbinding-appcompat-v7-kotlin
 - rxbinding-recyclerview-v7-kotlin
+
 ### Rest Client
 - retrofit
 - okhttp-urlconnection
 - okhttp
+
 ### Support Library
 - support-v4
 - appcompat-v7
