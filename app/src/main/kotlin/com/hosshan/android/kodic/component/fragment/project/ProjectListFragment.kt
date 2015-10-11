@@ -15,7 +15,9 @@ import com.hosshan.android.kodic.component.adapter.ProjectAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.store.codic.UserStore
+import com.hosshan.android.kodic.util.addComposite
 import rx.Subscriber
+import rx.schedulers.Schedulers
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -63,8 +65,9 @@ public class ProjectListFragment : BaseFragment() {
     private fun getProjectList() {
         userStore
                 .getProjectList()
+                .addComposite(compositeSubscription)
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .lift(OperatorAddToCompositeSubscription<List<Project>>(compositeSubscription))
                 .subscribe(object : Subscriber<List<Project>>() {
                     override fun onCompleted() {
                     }
