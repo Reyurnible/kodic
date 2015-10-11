@@ -1,4 +1,4 @@
-package com.hosshan.android.kodic.component.fragment.project
+package com.hosshan.android.kodic.component.adapter
 
 import android.app.Activity
 import android.content.Context
