@@ -10,7 +10,7 @@ import io.realm.Realm
  */
 public class TranslatedStore(val realm: Realm) {
 
-    fun getTranslatedHistory() = realm.where(TranslatedHistory::class.java).findAll()
+    fun getTranslatedHistory(projectId: Int) = realm.where(TranslatedHistory::class.java).equalTo("projectId", projectId).findAll()
 
     fun saveTranslatedHistory(projectId: Int, translatedText: TranslatedText) {
         realm.use {
