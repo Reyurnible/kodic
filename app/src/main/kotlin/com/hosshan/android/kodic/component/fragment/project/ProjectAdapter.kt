@@ -1,4 +1,4 @@
-package com.hosshan.android.kodic.component.adapter
+package com.hosshan.android.kodic.component.fragment.project
 
 import android.app.Activity
 import android.content.Context
@@ -16,8 +16,8 @@ import android.widget.TextView
 import butterknife.bindView
 import com.bumptech.glide.Glide
 import com.hosshan.android.kodic.R
-import com.hosshan.android.kodic.component.activity.BaseActivity
 import com.hosshan.android.kodic.component.activity.DetailsActivity
+import com.hosshan.android.kodic.component.adapter.ArrayRecyclerAdapter
 import com.hosshan.android.kodic.component.fragment.translate.TranslateFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.util.ColorUtil
