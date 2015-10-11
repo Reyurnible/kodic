@@ -18,6 +18,7 @@ import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.TranslatedText
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.realm.TranslatedStore
+import com.hosshan.android.kodic.util.addComposite
 import retrofit.RetrofitError
 import rx.Observable
 import rx.Subscriber
@@ -126,7 +127,7 @@ public class TranslateFragment : BaseFragment() {
                 observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
             }
             observableTranslatedText
-                    .lift(OperatorAddToCompositeSubscription<List<TranslatedText>>(compositeSubscription))
+                    .addComposite(compositeSubscription)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object : Subscriber<List<TranslatedText>>() {
