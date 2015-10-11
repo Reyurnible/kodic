@@ -1,9 +1,9 @@
 package com.hosshan.android.kodic.store.realm
 
 import com.hosshan.android.kodic.data.realm.TranslatedHistory
-import com.hosshan.android.kodic.data.realm.toTranslatedHistory
 import com.hosshan.android.kodic.model.TranslatedText
 import io.realm.Realm
+import java.util.*
 
 /**
  * Created by shunhosaka on 15/10/06.
@@ -15,7 +15,7 @@ public class TranslatedStore(val realm: Realm) {
     fun saveTranslatedHistory(projectId: Int, translatedText: TranslatedText) {
         realm.use {
             it.executeTransaction {
-                val translatedHistory = translatedText.toTranslatedHistory(projectId)
+                val translatedHistory = TranslatedHistory(projectId, Date(), translatedText)
                 realm.copyToRealm(translatedHistory)
             }
         }

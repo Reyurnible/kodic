@@ -15,7 +15,6 @@ import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
-import com.hosshan.android.kodic.data.realm.toTranslatedText
 import com.hosshan.android.kodic.model.TranslatedText
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.realm.TranslatedStore
@@ -151,7 +150,9 @@ public class TranslateFragment : BaseFragment() {
         }
 
         translatedStore.getTranslatedHistory(projectId!!).map {
-            adapter.add(it.toTranslatedText())
+            it.translatedText?.let {
+                adapter.add(it)
+            }
         }
     }
 
