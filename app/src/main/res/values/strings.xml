@@ -4,6 +4,9 @@
     <string name="drawer_open"></string>
     <string name="drawer_close"></string>
 
+    <!-- Application -->
+    <string name="app_request_error">Failed network request.</string>
+
     <!-- Login -->
     <string name="login_button">SAVE</string>
 
