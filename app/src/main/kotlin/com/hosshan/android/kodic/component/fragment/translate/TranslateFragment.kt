@@ -16,6 +16,7 @@ import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.TranslatedText
+import com.hosshan.android.kodic.store.codic.CodicRequestSubscriber
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.realm.TranslatedStore
 import com.hosshan.android.kodic.util.addComposite
@@ -130,18 +131,14 @@ public class TranslateFragment : BaseFragment() {
                     .addComposite(compositeSubscription)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : Subscriber<List<TranslatedText>>() {
-                        override fun onError(e: Throwable?) {
-                            if (e is RetrofitError) {
-                                Toast.makeText(activity, e.response.toString(), Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
+                    .subscribe(object : CodicRequestSubscriber<List<TranslatedText>>(this) {
                         override fun onCompleted() {
+                            super.onCompleted()
                             editText.setText("")
                         }
 
                         override fun onNext(items: List<TranslatedText>?) {
+                            super.onNext(items)
                             adapter.insertAll(0, items)
                             items?.forEach {
                                 translatedStore.saveTranslatedHistory(projectId!!, it)

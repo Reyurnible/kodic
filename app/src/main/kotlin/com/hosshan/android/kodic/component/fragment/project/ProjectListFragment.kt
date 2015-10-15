@@ -14,6 +14,7 @@ import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.ProjectAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.model.Project
+import com.hosshan.android.kodic.store.codic.CodicRequestSubscriber
 import com.hosshan.android.kodic.store.codic.UserStore
 import com.hosshan.android.kodic.util.addComposite
 import rx.Subscriber
@@ -68,14 +69,9 @@ public class ProjectListFragment : BaseFragment() {
                 .addComposite(compositeSubscription)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Subscriber<List<Project>>() {
-                    override fun onCompleted() {
-                    }
-
-                    override fun onError(e: Throwable?) {
-                    }
-
+                .subscribe(object : CodicRequestSubscriber<List<Project>>(this) {
                     override fun onNext(items: List<Project>?) {
+                        super.onNext(items)
                         adapter.addAll(items)
                     }
                 })
