@@ -1,15 +1,24 @@
 <resources>
+    <!-- Application -->
     <string name="app_name">Kodic</string>
+    <string name="app_request_error">Failed network request.</string>
 
+    <!-- Some Title -->
+    <string name="title_login">Login</string>
+    <string name="title_project">Project List</string>
+    <string name="title_translate">Translate</string>
+    
+    <!-- Drawer -->
     <string name="drawer_open"></string>
     <string name="drawer_close"></string>
-
-    <!-- Application -->
-    <string name="app_request_error">Failed network request.</string>
+    <string name="drawer_menu_login">@string/title_login</string>
 
     <!-- Login -->
     <string name="login_button">SAVE</string>
 
+    <!-- Project -->
+
     <!-- Translate -->
     <string name="translate_button">Translate</string>
+
 </resources>
