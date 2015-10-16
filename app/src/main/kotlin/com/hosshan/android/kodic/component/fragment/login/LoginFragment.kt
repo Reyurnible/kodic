@@ -12,7 +12,6 @@ import android.widget.EditText
 import butterknife.bindView
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.activity.MainActivity
-import kotlin.platform.platformStatic
 
 /**
  * Created by shunhosaka on 15/09/10.
@@ -37,8 +36,11 @@ public class LoginFragment : Fragment() {
         LoginComponent.Initializer.init(activity).inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? {
-        val rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? =
+            inflater.inflate(R.layout.fragment_login, container, false)
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         button.setOnClickListener {
             // TODO EditTextの内容を保存する
@@ -47,7 +49,5 @@ public class LoginFragment : Fragment() {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
-
-        return rootView
     }
 }

@@ -11,6 +11,7 @@ import dagger.Component
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(LicenseModule::class))
 interface LicenseComponent {
 
+    fun inject(fragment: LicenseFragment)
 
     object Initializer {
 
