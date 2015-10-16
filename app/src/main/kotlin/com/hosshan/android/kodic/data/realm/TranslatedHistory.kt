@@ -10,8 +10,8 @@ import java.util.*
  * Created by shunhosaka on 15/10/06.
  */
 @RealmClass
-public open class TranslatedHistory(
-        public open var projectId: Int = -1,
-        public open var createdAt: Date = Date(),
-        public open var translatedText: TranslatedText? = null
+public data class TranslatedHistory(
+        val projectId: Int = -1,
+        val createdAt: Date = Date(),
+        val translatedText: TranslatedText? = null
 ) : RealmObject()
