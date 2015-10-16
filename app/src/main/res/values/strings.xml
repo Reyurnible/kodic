@@ -4,6 +4,7 @@
     <string name="app_request_error">Failed network request.</string>
 
     <!-- Some Title -->
+    <string name="title_license">License</string>
     <string name="title_login">Login</string>
     <string name="title_project">Project List</string>
     <string name="title_translate">Translate</string>
@@ -11,7 +12,10 @@
     <!-- Drawer -->
     <string name="drawer_open"></string>
     <string name="drawer_close"></string>
+    <string name="drawer_menu_license">@string/title_license</string>
     <string name="drawer_menu_login">@string/title_login</string>
+
+    <!-- License -->
 
     <!-- Login -->
     <string name="login_button">SAVE</string>
