@@ -6,5 +6,5 @@ import dagger.Module
  * Created by shunhosaka on 15/10/03.
  */
 @Module
-public class ProjectModule {
+class ProjectModule {
 }
