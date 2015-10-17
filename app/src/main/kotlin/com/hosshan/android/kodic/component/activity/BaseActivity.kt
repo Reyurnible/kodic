@@ -37,7 +37,7 @@ public open class BaseActivity : AppCompatActivity() {
         showDetails(getString(title), fragmentClass, args)
     }
 
-    fun showDetails<T : Fragment>(title: String?, fragmentClass: Class<T>, args: Bundle?) {
+    fun showDetails<T : Fragment>(title: CharSequence?, fragmentClass: Class<T>, args: Bundle?) {
         startActivity(DetailsActivity.createIntent(applicationContext, title, fragmentClass, args))
     }
 
