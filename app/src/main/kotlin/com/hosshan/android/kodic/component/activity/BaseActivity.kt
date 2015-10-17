@@ -1,6 +1,8 @@
 package com.hosshan.android.kodic.component.activity
 
+import android.os.Bundle
 import android.support.annotation.IdRes
+import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 
@@ -9,30 +11,43 @@ import android.support.v7.app.AppCompatActivity
  */
 public open class BaseActivity : AppCompatActivity() {
 
-    fun setContentFragment(@IdRes resourceId: Int, fragment: Fragment?) {
-        fragment?.let {
-            supportFragmentManager?.beginTransaction()?.replace(resourceId, it)?.commit()
-        }
+    protected  fun setContentFragment(@IdRes resourceId: Int, fragment: Fragment) {
+        supportFragmentManager?.beginTransaction()?.replace(resourceId, fragment)?.commit()
     }
 
-    fun addContentFragment(@IdRes resourceId: Int, fragment: Fragment?) {
+    protected fun addContentFragment(@IdRes resourceId: Int, fragment: Fragment?) {
         fragment?.let {
             supportFragmentManager?.beginTransaction()?.add(resourceId, it)?.commit()
         }
     }
 
-    fun getContentFragment(@IdRes resourceId: Int): Fragment? {
+    public fun getContentFragment(@IdRes resourceId: Int): Fragment? {
         return supportFragmentManager.findFragmentById(resourceId)
     }
 
-    fun getContentFragment(tag: String): Fragment? {
+    protected fun getContentFragment(tag: String): Fragment? {
         return supportFragmentManager.findFragmentByTag(tag)
     }
 
-    fun addFragment(tag: String, fragment: Fragment) {
-        fragment?.let {
-            supportFragmentManager?.beginTransaction()?.add(it, tag)?.commit()
-        }
+    protected fun addFragment(tag: String, fragment: Fragment) {
+        supportFragmentManager?.beginTransaction()?.add(fragment, tag)?.commit()
     }
+
+    fun showDetails<T : Fragment>(@StringRes title: Int, fragmentClass: Class<T>, args: Bundle?) {
+        showDetails(getString(title), fragmentClass, args)
+    }
+
+    fun showDetails<T : Fragment>(title: String?, fragmentClass: Class<T>, args: Bundle?) {
+        startActivity(DetailsActivity.createIntent(applicationContext, title, fragmentClass, args))
+    }
+
+    fun showDetailsForResult<T : Fragment>(@StringRes title: Int, fragmentClass: Class<T>, args: Bundle?, requestCode: Int) {
+        showDetailsForResult(getString(title), fragmentClass, args, requestCode)
+    }
+
+    fun showDetailsForResult<T : Fragment>(title: String?, fragmentClass: Class<T>, args: Bundle?, requestCode: Int) {
+        startActivityForResult(DetailsActivity.createIntent(applicationContext, title, fragmentClass, args), requestCode)
+    }
+
 
 }
