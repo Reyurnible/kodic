@@ -45,7 +45,7 @@ public open class BaseActivity : AppCompatActivity() {
         showDetailsForResult(getString(title), fragmentClass, args, requestCode)
     }
 
-    fun showDetailsForResult<T : Fragment>(title: String?, fragmentClass: Class<T>, args: Bundle?, requestCode: Int) {
+    fun showDetailsForResult<T : Fragment>(title: CharSequence?, fragmentClass: Class<T>, args: Bundle?, requestCode: Int) {
         startActivityForResult(DetailsActivity.createIntent(applicationContext, title, fragmentClass, args), requestCode)
     }
 

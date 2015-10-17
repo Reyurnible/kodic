@@ -18,7 +18,7 @@ public class DetailsActivity : BaseActivity() {
         const val EXTRA_FRAGMENT_CLASS: String = "extra_fragment_class"
         const val EXTRA_FRAGMENT_ARG: String = "extra_fragment_arg"
 
-        @JvmStatic fun createIntent<T : Fragment>(context: Context, title: String?, fragmentClass: Class<T>, fragmentArg: Bundle?): Intent {
+        @JvmStatic fun createIntent<T : Fragment>(context: Context, title: CharSequence?, fragmentClass: Class<T>, fragmentArg: Bundle?): Intent {
             val intent: Intent = Intent(context, DetailsActivity::class.java)
             title?.let {
                 intent.putExtra(EXTRA_TITLE, it)
@@ -40,7 +40,7 @@ public class DetailsActivity : BaseActivity() {
         supportActionBar.setDisplayHomeAsUpEnabled(true)
         val intent: Intent = getIntent()
         if (intent.hasExtra(EXTRA_TITLE)) {
-            title = intent.getStringExtra(EXTRA_TITLE)
+            title = intent.getCharSequenceExtra(EXTRA_TITLE)
         }
         toolbar.setTitleTextColor(getColor(R.color.primary_text_inverse))
         toolbar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
