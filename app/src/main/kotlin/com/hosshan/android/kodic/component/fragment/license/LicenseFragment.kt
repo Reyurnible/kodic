@@ -9,7 +9,6 @@ import android.widget.ListView
 import butterknife.bindView
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.fragment.BaseFragment
-import com.hosshan.android.kodic.component.fragment.login.LoginFragment
 
 /**
  * Created by shunhosaka on 2015/10/17.
@@ -25,7 +24,7 @@ public class LicenseFragment : BaseFragment() {
         }
     }
 
-    val  listView: ListView by bindView(R.id.license_listview)
+    val listView: ListView by bindView(R.id.license_listview)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

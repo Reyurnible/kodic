@@ -2,16 +2,17 @@ package com.hosshan.android.kodic.component.activity
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.view.View
 import butterknife.bindView
 import com.hosshan.android.kodic.R
+import com.hosshan.android.kodic.component.fragment.license.LicenseFragment
+import com.hosshan.android.kodic.component.fragment.login.LoginFragment
 import com.hosshan.android.kodic.component.fragment.project.ProjectListFragment
-import timber.log.Timber
 import kotlin.properties.Delegates
 
 /**
@@ -46,14 +47,18 @@ public class MainActivity : BaseActivity() {
         // Setting NavigationDrawer
         drawerLayout.setDrawerListener(drawerToggle)
 
-        navigationView.setNavigationItemSelectedListener (
-                object : NavigationView.OnNavigationItemSelectedListener {
-                    override fun onNavigationItemSelected(item: MenuItem?): Boolean {
-
-                        return false
-                    }
+        navigationView.setNavigationItemSelectedListener { item: MenuItem? ->
+            item?.let {
+                when (it.itemId) {
+                    R.id.menu_login -> LoginFragment.newInstance()
+                    R.id.menu_license -> LicenseFragment.newInstance()
+                    else -> null
+                }?.let {
+                    showDetails(item.title, it.javaClass, it.arguments)
                 }
-        )
+            }
+            true
+        }
 
         setContentFragment(R.id.main_layout_container, ProjectListFragment.newInstance())
     }
