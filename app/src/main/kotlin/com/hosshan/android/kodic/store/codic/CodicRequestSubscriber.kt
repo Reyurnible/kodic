@@ -16,12 +16,12 @@ public open class CodicRequestSubscriber<T> : Subscriber<T> {
     val context: Context
     val fragment: BaseFragment?
 
-    constructor(context: Context) {
+    constructor(context: Context) : super() {
         this.context = context
         this.fragment = null
     }
 
-    constructor(fragment: BaseFragment) {
+    constructor(fragment: BaseFragment) : super() {
         this.context = fragment.activity
         this.fragment = fragment
     }
