@@ -7,6 +7,6 @@ import io.realm.annotations.RealmClass
  * Created by shunhosaka on 2015/09/10.
  */
 @RealmClass
-public data class Candidate(
-        val text: String
+public open class Candidate(
+        public open var text: String = ""
 ) : RealmObject()
