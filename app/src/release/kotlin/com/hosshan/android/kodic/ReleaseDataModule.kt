@@ -67,5 +67,8 @@ public class ReleaseDataModule {
 
     @Provides
     fun provideRealm(app : Application): Realm =
-            Realm.getInstance(app)
+            Realm.getInstance(RealmConfiguration.Builder(app)
+                    .name("kodic")
+                    .schemaVersion(1)
+                    .build())
 }

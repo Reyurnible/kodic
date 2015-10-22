@@ -11,6 +11,7 @@ import com.squareup.okhttp.OkHttpClient
 import dagger.Module
 import dagger.Provides
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import retrofit.Endpoint
 import retrofit.Endpoints
 import retrofit.RequestInterceptor
@@ -69,6 +70,10 @@ public class DebugDataModule {
 
     @Provides
     fun provideRealm(app : Application): Realm =
-            Realm.getInstance(app)
+            Realm.getInstance(RealmConfiguration.Builder(app)
+                    .name("kodic_debug")
+                    .schemaVersion(1)
+                    .build())
+
 
 }
