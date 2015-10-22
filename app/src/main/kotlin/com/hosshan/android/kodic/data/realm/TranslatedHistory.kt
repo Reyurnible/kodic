@@ -12,5 +12,14 @@ import java.util.*
 public open class TranslatedHistory(
          public open var projectId: Int = -1,
          public open var createdAt: Date = Date(),
-         public open var translatedText: TranslatedText? = null
+         // Translated Text Object
+         public open var successful: Boolean = false,
+         public open var text: String = "",
+         public open var translatedText: String = ""
 ) : RealmObject()
+
+public fun TranslatedHistory.toTranslatedText(): TranslatedText =
+        TranslatedText(this.successful,
+                this.text,
+                this.translatedText,
+                ArrayList())

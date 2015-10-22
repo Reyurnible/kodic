@@ -15,7 +15,12 @@ public class TranslatedStore(val realm: Realm) {
     fun saveTranslatedHistory(projectId: Int, translatedText: TranslatedText) {
         realm.use {
             it.executeTransaction {
-                val translatedHistory = TranslatedHistory(projectId, Date(), translatedText)
+                val translatedHistory = TranslatedHistory(
+                        projectId,
+                        Date(),
+                        translatedText.successful,
+                        translatedText.text,
+                        translatedText.translatedText)
                 realm.copyToRealm(translatedHistory)
             }
         }
