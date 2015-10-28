@@ -43,7 +43,7 @@ android {
     }
 }
 
-def rxBindingVersion = '0.2.0'
+def rxBindingVersion = '0.3.0'
 def supportLibVersion = '23.0.1'
 
 /*
