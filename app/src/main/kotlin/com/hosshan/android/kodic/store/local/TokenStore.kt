@@ -23,7 +23,7 @@ class TokenStore(val sharedPreferences: SharedPreferences) {
     }
 
     fun setToken(token: String) {
-        sharedPreferences.edit().putString(KEY_TOKEN, token).commit()
+        sharedPreferences.edit().putString(KEY_TOKEN, GsonUtil.getInstance().toJson(Token(token))).commit()
     }
 
 }
