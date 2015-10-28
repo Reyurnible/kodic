@@ -46,20 +46,24 @@ public class DrawerFragment : MenuFragment() {
         listView.adapter = adapter
         listView.setOnItemClickListener { adapterView, view, position, l ->
             val item: DrawerMenu = adapter.getItem(position)
-            Timber.d("menu item click")
+            Timber.i("menu item click")
             item?.let {
                 // Itemを選択した時の処理
                 when (item) {
-                    DrawerMenu.Login -> LoginFragment.newInstance()
-                    DrawerMenu.Licence -> LicenseFragment.newInstance()
+                    DrawerMenu.Login -> DetailsActivity.createIntent(
+                            activity,
+                            "",
+                            LoginFragment::class.java,
+                            LoginFragment.createArgument())
+                    DrawerMenu.Licence -> DetailsActivity.createIntent(
+                            activity,
+                            getString(item.title),
+                            LicenseFragment::class.java,
+                            LicenseFragment.createArgument())
                     else -> null
                 }?.let {
                     // コンテンツがあれば表示する
-                    startActivity(DetailsActivity.createIntent(
-                            activity,
-                            getString(item.title),
-                            it.javaClass,
-                            it.arguments))
+                    startActivity(it)
                 }
             }
         }
