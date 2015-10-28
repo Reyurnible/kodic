@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
 import com.hosshan.android.kodic.R
@@ -42,7 +43,7 @@ public class DetailsActivity : BaseActivity() {
         if (intent.hasExtra(EXTRA_TITLE)) {
             title = intent.getCharSequenceExtra(EXTRA_TITLE)
         }
-        toolbar.setTitleTextColor(getColor(R.color.primary_text_inverse))
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.primary_text_inverse))
         toolbar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
         toolbar.setNavigationOnClickListener {
             finish()

@@ -3,6 +3,7 @@ package com.hosshan.android.kodic.util
 import android.content.Context
 import android.content.res.TypedArray
 import android.support.annotation.ColorInt
+import android.support.v4.content.ContextCompat
 import com.hosshan.android.kodic.R
 
 /**
@@ -16,14 +17,14 @@ public class ColorUtil {
         @ColorInt
         fun getMaterialColor(context: Context, index: Int): Int {
             val colorArray: TypedArray = context.resources.obtainTypedArray(R.array.material_colors)
-            return colorArray.getColor(index, context.getColor(R.color.primary))
+            return colorArray.getColor(index, ContextCompat.getColor(context, R.color.primary))
         }
 
         @JvmStatic
         @ColorInt
         fun getMaterialDarkColor(context: Context, index: Int): Int {
             val colorArray: TypedArray = context.resources.obtainTypedArray(R.array.material_colors_dark)
-            return colorArray.getColor(index, context.getColor(R.color.primary_dark))
+            return colorArray.getColor(index, ContextCompat.getColor(context, R.color.primary_dark))
         }
 
     }

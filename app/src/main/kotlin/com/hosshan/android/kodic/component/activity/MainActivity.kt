@@ -3,6 +3,8 @@ package com.hosshan.android.kodic.component.activity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -32,7 +34,7 @@ public class MainActivity : BaseActivity() {
 
         // Setting Toolbar
         setSupportActionBar(toolbar)
-        toolbar.setTitleTextColor(getColor(R.color.primary_text_inverse))
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.primary_text_inverse))
         toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
         toolbar.setNavigationOnClickListener {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START) else drawerLayout.openDrawer(GravityCompat.START)
