@@ -1,5 +1,6 @@
-package com.hosshan.android.kodic.component.fragment
+package com.hosshan.android.kodic.component.fragment.drawer
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,11 @@ public class DrawerFragment : MenuFragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        DrawerComponent.Initializer.init(activity).inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

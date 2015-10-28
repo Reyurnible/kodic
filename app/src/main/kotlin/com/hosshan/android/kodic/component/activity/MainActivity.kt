@@ -5,7 +5,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
 import com.hosshan.android.kodic.R
-import com.hosshan.android.kodic.component.fragment.DrawerFragment
+import com.hosshan.android.kodic.component.fragment.drawer.DrawerFragment
 import com.hosshan.android.kodic.component.fragment.project.ProjectListFragment
 import com.mxn.soul.flowingdrawer_core.FlowingView
 import com.mxn.soul.flowingdrawer_core.LeftDrawerLayout
