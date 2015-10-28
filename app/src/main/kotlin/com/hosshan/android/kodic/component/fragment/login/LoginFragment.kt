@@ -25,10 +25,12 @@ public class LoginFragment : BaseFragment() {
     companion object {
         @JvmStatic public fun newInstance(): LoginFragment {
             val fragment: LoginFragment = LoginFragment()
-            val args: Bundle = Bundle()
-            fragment.arguments = args
+            fragment.arguments = createArgument()
             return fragment
         }
+
+        @JvmStatic public fun createArgument(): Bundle =
+                Bundle()
     }
 
     val editText: EditText by bindView(R.id.login_edittext)
@@ -41,11 +43,13 @@ public class LoginFragment : BaseFragment() {
         LoginComponent.Initializer.init(activity).inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle): View? =
-            inflater.inflate(R.layout.fragment_login, container, false)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater?.inflate(R.layout.fragment_login, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Titleをセットしない
+        activity?.actionBar?.title = ""
         // TokenのStoreから値を取り出す
         tokenStore.getToken()
                 .addComposite(compositeSubscription)

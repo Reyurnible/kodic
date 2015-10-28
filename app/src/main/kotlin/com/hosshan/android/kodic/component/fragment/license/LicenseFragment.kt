@@ -18,10 +18,12 @@ public class LicenseFragment : BaseFragment() {
     companion object {
         @JvmStatic public fun newInstance(): LicenseFragment {
             val fragment: LicenseFragment = LicenseFragment()
-            val args: Bundle = Bundle()
-            fragment.arguments = args
+            fragment.arguments = createArgument()
             return fragment
         }
+
+        @JvmStatic public fun createArgument(): Bundle =
+                Bundle()
     }
 
     val listView: ListView by bindView(R.id.license_listview)
