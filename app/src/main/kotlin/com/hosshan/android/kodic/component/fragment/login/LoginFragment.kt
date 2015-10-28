@@ -3,20 +3,24 @@ package com.hosshan.android.kodic.component.fragment.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import butterknife.bindView
+import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.activity.MainActivity
+import com.hosshan.android.kodic.component.fragment.BaseFragment
+import com.hosshan.android.kodic.store.local.TokenStore
+import com.hosshan.android.kodic.util.addComposite
+import javax.inject.Inject
 
 /**
  * Created by shunhosaka on 15/09/10.
  */
-public class LoginFragment : Fragment() {
+public class LoginFragment : BaseFragment() {
 
     companion object {
         @JvmStatic public fun newInstance(): LoginFragment {
@@ -30,6 +34,7 @@ public class LoginFragment : Fragment() {
     val editText: EditText by bindView(R.id.login_edittext)
     val button: Button by bindView(R.id.login_button)
 
+    @Inject lateinit var tokenStore: TokenStore
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -41,9 +46,16 @@ public class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // TokenのStoreから値を取り出す
+        tokenStore.getToken()
+                .addComposite(compositeSubscription)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    editText.setText(it?.token)
+                }
 
         button.setOnClickListener {
-            // TODO EditTextの内容を保存する
+            tokenStore.setToken(editText.text.toString())
 
             val intent: Intent = Intent(activity, MainActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
