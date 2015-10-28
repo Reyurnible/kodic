@@ -3,6 +3,7 @@ package com.hosshan.android.kodic
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.f2prateek.rx.preferences.RxSharedPreferences
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hosshan.android.kodic.store.StoreModule
@@ -64,6 +65,10 @@ public class ReleaseDataModule {
     @Provides
     fun provideSharedPreferences(app: Application): SharedPreferences =
             app.getSharedPreferences("kodic", Context.MODE_PRIVATE)
+
+    @Provides
+    fun provideRxSharedPreferences(sharedPreferences: SharedPreferences): RxSharedPreferences =
+            RxSharedPreferences.create(sharedPreferences)
 
     @Provides
     fun provideRealm(app : Application): Realm =
