@@ -1,20 +1,12 @@
-<android.support.v4.widget.DrawerLayout
+<com.mxn.soul.flowingdrawer_core.LeftDrawerLayout
     android:id="@+id/main_drawerlayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:clipChildren="false">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/main_navigation_view"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/menu_drawer"/>
-
+    <!--content-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,5 +31,28 @@
         </FrameLayout>
     </LinearLayout>
 
-</android.support.v4.widget.DrawerLayout>
+    <!--menu-->
+    <RelativeLayout
+        android:layout_width="@dimen/drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:clipChildren="false">
+
+        <com.mxn.soul.flowingdrawer_core.FlowingView
+            android:id="@+id/main_flowingview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/main_layout_container_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/element_spacing_xxlarge">
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</com.mxn.soul.flowingdrawer_core.LeftDrawerLayout>
 
