@@ -46,8 +46,11 @@
     <!-- Shape: Stroke -->
     <dimen name="button_stroke_width">2dp</dimen>
 
+    <!-- Drawer -->
+    <dimen name="drawer_width">280dp</dimen>
+    <dimen name="drawer_header_height">160dp</dimen>
+
     <!-- Project -->
     <dimen name="project_card_size">240dp</dimen>
-
 
 </resources>

@@ -5,9 +5,8 @@
         <item
             android:id="@+id/menu_login"
             android:title="@string/drawer_menu_login" />
-
         <item
             android:id="@+id/menu_license"
-            android:title="@string/drawer_menu_license" />
+            android:title="@string/drawer_menu_license"/>
     </group>
 </menu>
