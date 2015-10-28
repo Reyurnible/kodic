@@ -18,6 +18,8 @@
     <!-- License -->
 
     <!-- Login -->
+    <string name="login_title">Auth Token</string>
+    <string name="login_edittext_hint">Write your token...</string>
     <string name="login_button">SAVE</string>
 
     <!-- Project -->

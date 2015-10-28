@@ -3,26 +3,64 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     android:orientation="vertical"
     android:paddingBottom="@dimen/element_spacing_xlarge"
     android:paddingLeft="@dimen/element_spacing_xlarge"
     android:paddingRight="@dimen/element_spacing_xlarge"
     android:paddingTop="@dimen/element_spacing_xlarge">
 
-    <EditText
-        android:id="@+id/login_edittext"
+    <android.support.v7.widget.CardView
+        android:id="@+id/login_cardview"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerInParent="true"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation">
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/element_spacing_xlarge"
+            android:paddingLeft="@dimen/element_spacing_xlarge"
+            android:paddingRight="@dimen/element_spacing_xlarge"
+            android:paddingTop="@dimen/element_spacing_xlarge">
+
+            <EditText
+                android:id="@+id/login_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="top|left"
+                android:hint="@string/login_edittext_hint"
+                android:lines="6"/>
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_spacing_normal"
+                android:background="@drawable/btn_accent"
+                android:text="@string/login_button"
+                android:textColor="@color/primary_text_inverse"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_edittext"
+        android:layout_above="@+id/login_cardview"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/element_spacing_normal"
-        android:text="@string/login_button"/>
+        android:layout_marginBottom="@dimen/element_spacing_xxlarge"
+        android:text="@string/login_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/primary_text_inverse"
+        android:textSize="@dimen/text_size_display_1"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
