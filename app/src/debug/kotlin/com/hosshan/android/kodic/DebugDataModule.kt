@@ -3,6 +3,7 @@ package com.hosshan.android.kodic
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.f2prateek.rx.preferences.RxSharedPreferences
 import com.google.gson.Gson
 import com.hosshan.android.kodic.store.StoreModule
 import com.hosshan.android.kodic.store.codic.service.ApiModule
@@ -69,7 +70,11 @@ public class DebugDataModule {
             app.getSharedPreferences("kodic_debug", Context.MODE_PRIVATE)
 
     @Provides
-    fun provideRealm(app : Application): Realm =
+    fun provideRxSharedPreferences(sharedPreferences: SharedPreferences): RxSharedPreferences =
+            RxSharedPreferences.create(sharedPreferences)
+
+    @Provides
+    fun provideRealm(app: Application): Realm =
             Realm.getInstance(RealmConfiguration.Builder(app)
                     .name("kodic_debug")
                     .schemaVersion(1)

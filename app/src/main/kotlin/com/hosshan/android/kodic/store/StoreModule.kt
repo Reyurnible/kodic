@@ -1,9 +1,11 @@
 package com.hosshan.android.kodic.store
 
+import android.content.SharedPreferences
 import com.hosshan.android.kodic.CodicEngineService
 import com.hosshan.android.kodic.store.codic.CedStore
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.codic.UserStore
+import com.hosshan.android.kodic.store.local.TokenStore
 import com.hosshan.android.kodic.store.realm.TranslatedStore
 import com.hosshan.android.kodic.store.service.CodicCedService
 import com.hosshan.android.kodic.store.service.CodicUserService
@@ -32,5 +34,9 @@ public class StoreModule {
     @Provides
     fun provideTranslatedStore(realm: Realm): TranslatedStore =
             TranslatedStore(realm)
+
+    @Provides
+    fun provideTokenStore(sharedPreferences: SharedPreferences): TokenStore =
+            TokenStore(sharedPreferences)
 
 }
