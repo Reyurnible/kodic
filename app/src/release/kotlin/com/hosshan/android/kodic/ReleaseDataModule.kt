@@ -3,19 +3,27 @@ package com.hosshan.android.kodic
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.hosshan.android.kodic.data.local.Token
 import com.hosshan.android.kodic.store.StoreModule
+import com.hosshan.android.kodic.store.codic.service.ApiModule
+import com.hosshan.android.kodic.store.local.TokenStore
+import com.hosshan.android.kodic.util.GsonUtil
 import com.squareup.okhttp.OkHttpClient
 import dagger.Module
 import dagger.Provides
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import retrofit.Endpoint
 import retrofit.Endpoints
 import retrofit.RequestInterceptor
 import retrofit.RestAdapter
 import retrofit.client.OkClient
 import retrofit.converter.GsonConverter
+import rx.Subscriber
+import rx.schedulers.Schedulers
 import javax.inject.Named
 
 /**
@@ -46,11 +54,20 @@ public class ReleaseDataModule {
     fun provideGson(): Gson = GsonUtil.getInstance()
 
     @Provides
-    fun provideRequestInterceptor(app: android.app.Application): RequestInterceptor =
-            RequestInterceptor {
-                // TODO GetToken by SharedPreferences
-                it.addHeader("Authorization", "Bearer " + "");
-            }
+    fun provideRequestInterceptor(tokenStore: TokenStore): RequestInterceptor = RequestInterceptor { request ->
+        tokenStore.getToken()
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Subscriber<Token?>() {
+                    override fun onCompleted() { }
+                    override fun onNext(token: Token?) {
+                        token?.let {
+                            request.addHeader("Authorization", "Bearer " + "");
+                        }
+                    }
+                    override fun onError(e: Throwable?) { }
+                });
+    }
 
     @Provides
     fun provideRestAdapter(@Named("Api") client: OkHttpClient, endpoint: Endpoint, gson: Gson, requestInterceptor: RequestInterceptor): RestAdapter =
@@ -71,7 +88,7 @@ public class ReleaseDataModule {
             RxSharedPreferences.create(sharedPreferences)
 
     @Provides
-    fun provideRealm(app : Application): Realm =
+    fun provideRealm(app: Application): Realm =
             Realm.getInstance(RealmConfiguration.Builder(app)
                     .name("kodic")
                     .schemaVersion(1)
