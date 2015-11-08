@@ -13,6 +13,7 @@ import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.activity.MainActivity
 import com.hosshan.android.kodic.component.fragment.BaseFragment
+import com.hosshan.android.kodic.data.local.Token
 import com.hosshan.android.kodic.store.local.TokenStore
 import com.hosshan.android.kodic.util.addComposite
 import javax.inject.Inject
@@ -59,7 +60,7 @@ public class LoginFragment : BaseFragment() {
                 }
 
         button.setOnClickListener {
-            tokenStore.setToken(editText.text.toString())
+            tokenStore.setToken(Token(editText.text.toString()))
 
             val intent: Intent = Intent(activity, MainActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
