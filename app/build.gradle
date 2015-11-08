@@ -14,13 +14,29 @@ android {
         renderscriptTargetApi 23
         renderscriptSupportModeEnabled true
     }
+    signingConfigs {
+        debug {
+            storeFile file("key/debug.jks")
+            storePassword "debug1234"
+            keyAlias "kodic-debug"
+            keyPassword "debug1234"
+        }
+        release {
+            storeFile file("key/release.jks")
+            storePassword "release1234"
+            keyAlias "kodic-release"
+            keyPassword "release1234"
+        }
+    }
     buildTypes {
         debug {
             applicationIdSuffix '.debug'
+            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     packagingOptions {
