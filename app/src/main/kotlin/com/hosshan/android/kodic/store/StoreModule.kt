@@ -36,7 +36,6 @@ public class StoreModule {
             TranslatedStore(realm)
 
     @Provides
-    fun provideTokenStore(sharedPreferences: SharedPreferences): TokenStore =
-            TokenStore(sharedPreferences)
+    fun provideTokenStore(): TokenStore = TokenStore()
 
 }

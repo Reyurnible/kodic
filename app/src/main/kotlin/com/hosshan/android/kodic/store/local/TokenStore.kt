@@ -1,29 +1,16 @@
 package com.hosshan.android.kodic.store.local
 
-import android.content.SharedPreferences
 import com.hosshan.android.kodic.data.local.Token
-import com.hosshan.android.kodic.util.GsonUtil
+import com.orhanobut.hawk.Hawk
 import rx.Observable
 
 /**
  * Created by shunhosaka on 2015/10/28.
  */
-class TokenStore(val sharedPreferences: SharedPreferences) {
+class TokenStore() {
 
-    companion object {
-        const val KEY_TOKEN: String = "key_token"
-    }
+    fun getToken(): Observable<Token?> = Hawk.getObservable<Token?>(Token::class.java.simpleName)
 
-    fun getToken(): Observable<Token?> {
-        val token = sharedPreferences.getString(KEY_TOKEN, null)
-        token?.let {
-            return Observable.just(GsonUtil.getInstance().fromJson(it, Token::class.java))
-        }
-        return Observable.just(null)
-    }
-
-    fun setToken(token: String) {
-        sharedPreferences.edit().putString(KEY_TOKEN, GsonUtil.getInstance().toJson(Token(token))).commit()
-    }
+    fun setToken(token: Token): Observable<Boolean> = Hawk.putObservable(Token::class.java.simpleName, token)
 
 }
