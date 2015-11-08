@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.bindView
-import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.ProjectAdapter
@@ -17,7 +16,6 @@ import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.store.codic.CodicRequestSubscriber
 import com.hosshan.android.kodic.store.codic.UserStore
 import com.hosshan.android.kodic.util.addComposite
-import rx.Subscriber
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 import kotlin.properties.Delegates
