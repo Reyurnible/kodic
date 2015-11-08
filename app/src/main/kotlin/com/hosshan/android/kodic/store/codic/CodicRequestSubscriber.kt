@@ -4,10 +4,11 @@ import android.content.Context
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import com.hosshan.android.kodic.R
+import com.hosshan.android.kodic.component.activity.DetailsActivity
 import com.hosshan.android.kodic.component.fragment.BaseFragment
+import com.hosshan.android.kodic.component.fragment.login.LoginFragment
 import retrofit.RetrofitError
 import rx.Observer
-import rx.Subscriber
 import timber.log.Timber
 
 /**
@@ -33,12 +34,13 @@ public open class CodicRequestSubscriber<T> : Observer<T> {
     }
 
     override fun onError(error: Throwable?) {
-        Timber.d("onError:" + error.toString())
+        Timber.d("onError:" + error?.toString())
         error ?: return
         if (error is RetrofitError) {
             when (error.response.status) {
                 401 -> {
                     // Request token error
+                    showLogin()
                 }
                 else -> {
                     // Show Error
@@ -63,6 +65,18 @@ public open class CodicRequestSubscriber<T> : Observer<T> {
             return snackBar
         }
         return null
+    }
+
+    protected fun showLogin() {
+        try {
+            context.startActivity(DetailsActivity.createIntent(
+                    context,
+                    "",
+                    LoginFragment::class.java,
+                    LoginFragment.createArgument()))
+        } catch(e: IllegalStateException) {
+        } catch(e: IllegalThreadStateException) {
+        }
     }
 
 }
