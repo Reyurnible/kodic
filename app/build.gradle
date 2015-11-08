@@ -44,7 +44,7 @@ android {
 }
 
 def rxBindingVersion = '0.3.0'
-def supportLibVersion = '23.0.1'
+def supportLibVersion = '23.1.0'
 
 /*
  * ## Sorting
