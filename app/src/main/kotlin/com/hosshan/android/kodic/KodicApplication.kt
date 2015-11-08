@@ -19,6 +19,6 @@ public class KodicApplication : DaggerApplication() {
                 .setStorage(HawkBuilder.newSharedPrefStorage(this))
                 .setPassword("kodic")
                 .setLogLevel(if (BuildConfig.DEBUG) LogLevel.FULL else LogLevel.NONE)
-                .build()
+                .buildRx()
     }
 }
