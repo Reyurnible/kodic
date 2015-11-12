@@ -9,20 +9,18 @@ import java.util.*
  */
 public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val activity: Activity, val items: ArrayList<T>) : RecyclerView.Adapter<VH>() {
 
-    override fun getItemCount(): Int = items.size()
+    override fun getItemCount(): Int = items.size
 
     public fun getAttachActivity(): Activity = activity
 
     public fun getItem(index: Int): T? {
-        if (index < items.size() && index >= 0) {
-            return items.get(index)
+        if (index < items.size && index >= 0) {
+            return items[index]
         }
         return null
     }
 
-    public fun getPosition(item: T): Int {
-        return this.items.indexOf(item)
-    }
+    public fun getPosition(item: T) = items.indexOf(item)
 
     public fun insert(index: Int, item: T) {
         this.items.add(index, item)
@@ -49,7 +47,7 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val 
     }
 
     public fun remove(index: Int) {
-        this.items.remove(index)
+        this.items.removeAt(index)
         notifyDataSetChanged()
     }
 
