@@ -53,7 +53,7 @@ public class DrawerFragment : MenuFragment() {
         listView.setOnItemClickListener { adapterView, view, position, l ->
             val item: DrawerMenu = adapter.getItem(position)
             Timber.i("menu item click")
-            item?.let {
+            item.let {
                 // Itemを選択した時の処理
                 when (item) {
                     DrawerMenu.Login -> DetailsActivity.createIntent(
