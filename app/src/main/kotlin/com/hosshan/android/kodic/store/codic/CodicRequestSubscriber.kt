@@ -54,9 +54,7 @@ public open class CodicRequestSubscriber<T> : Observer<T> {
         Timber.d("onNext:" + t?.toString())
     }
 
-    protected fun showMessage(@StringRes message: Int): Snackbar? {
-        return showMessage(context.getString(message))
-    }
+    protected fun showMessage(@StringRes message: Int) = showMessage(context.getString(message))
 
     protected fun showMessage(message: String): Snackbar? {
         fragment?.let {
