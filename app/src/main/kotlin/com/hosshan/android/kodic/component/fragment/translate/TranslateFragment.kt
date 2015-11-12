@@ -49,7 +49,7 @@ public class TranslateFragment : BaseFragment() {
         }
     }
 
-    var projectId: Int? = null
+    var projectId: Int by Delegates.notNull()
     val caseSpinner: Spinner by bindView(R.id.translate_spinner_case)
     val acronymSpinner: Spinner by bindView(R.id.translate_spinner_acronym)
     val editText: EditText by bindView(R.id.translate_edittext_text)
@@ -83,8 +83,9 @@ public class TranslateFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args: Bundle? = arguments
-        projectId = args?.getInt(KEY_PROJECT_ID)
-        projectId ?: activity.finish()
+        args?.getInt(KEY_PROJECT_ID)?.let {
+            projectId = it
+        }
         adapter = TranslatedTextAdapter(activity)
     }
 
@@ -124,9 +125,9 @@ public class TranslateFragment : BaseFragment() {
 
             val observableTranslatedText: Observable<List<TranslatedText>>
             if (caseSpinner.selectedItemPosition == 0) {
-                observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId!!)
+                observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId)
             } else {
-                observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId!!, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
+                observableTranslatedText = engineStore.getTranslate(editText.text.toString(), projectId, caseSpinner.selectedItem as String, acronymSpinner.selectedItem as String)
             }
             observableTranslatedText
                     .addComposite(compositeSubscription)
@@ -142,13 +143,13 @@ public class TranslateFragment : BaseFragment() {
                             super.onNext(items)
                             adapter.insertAll(0, items)
                             items?.forEach {
-                                translatedStore.saveTranslatedHistory(projectId!!, it)
+                                translatedStore.saveTranslatedHistory(projectId, it)
                             }
                         }
                     })
         }
 
-        translatedStore.getTranslatedHistory(projectId!!) .map {
+        translatedStore.getTranslatedHistory(projectId) .map {
                 adapter.add(it.toTranslatedText())
         }
     }
