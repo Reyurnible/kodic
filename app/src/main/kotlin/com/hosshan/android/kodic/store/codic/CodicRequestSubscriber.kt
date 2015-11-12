@@ -16,8 +16,8 @@ import timber.log.Timber
  */
 public open class CodicRequestSubscriber<T> : Observer<T> {
 
-    val context: Context
-    val fragment: BaseFragment?
+    private val context: Context
+    private val fragment: BaseFragment?
 
     constructor(context: Context) : super() {
         this.context = context
