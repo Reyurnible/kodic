@@ -39,7 +39,7 @@ public class DetailsActivity : BaseActivity() {
         setContentView(R.layout.activity_details)
         setSupportActionBar(toolbar)
         supportActionBar.setDisplayHomeAsUpEnabled(true)
-        val intent: Intent = getIntent()
+        val intent: Intent = intent
         if (intent.hasExtra(EXTRA_TITLE)) {
             title = intent.getCharSequenceExtra(EXTRA_TITLE)
         }
@@ -57,8 +57,6 @@ public class DetailsActivity : BaseActivity() {
         fragment?.let {
             setContentFragment(R.id.details_layout_container, it)
         }
-
-
     }
 
     private fun getFragment<T : Fragment>(fragmentClass: Class<T>?): T? = fragmentClass?.newInstance()
