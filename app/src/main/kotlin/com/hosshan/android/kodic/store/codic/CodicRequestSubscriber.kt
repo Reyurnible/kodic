@@ -60,7 +60,7 @@ public open class CodicRequestSubscriber<T> : Observer<T> {
 
     protected fun showMessage(message: String): Snackbar? {
         fragment?.let {
-            val snackBar = Snackbar.make(it.view, R.string.app_request_error, Snackbar.LENGTH_SHORT)
+            val snackBar = Snackbar.make(it.view, message, Snackbar.LENGTH_SHORT)
             snackBar.show()
             return snackBar
         }
