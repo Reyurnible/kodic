@@ -21,4 +21,6 @@ public class KodicApplication : DaggerApplication() {
                 .setLogLevel(if (BuildConfig.DEBUG) LogLevel.FULL else LogLevel.NONE)
                 .buildRx()
     }
+
+    private fun add(a: Int, b:Int): Int = if(b > 10) 0 else add(a, b + 1)
 }
