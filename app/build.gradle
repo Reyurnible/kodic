@@ -80,6 +80,7 @@ def supportLibVersion = '23.1.0'
  */
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    project(':guillotine-menu')
     // Android Support Library
     compile "com.android.support:support-v4:$supportLibVersion"
     compile "com.android.support:appcompat-v7:$supportLibVersion"
