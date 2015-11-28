@@ -26,6 +26,8 @@ public class MainActivity : BaseActivity() {
     val toolbar: Toolbar by bindView(R.id.main_toolbar)
     val imageHamburger: ImageView by bindView(R.id.main_imageview_hamburger)
 
+    private var guillotineAnimation: GuillotineAnimation? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,7 +41,7 @@ public class MainActivity : BaseActivity() {
         guillotineMenu.findViewById(R.id.guillotine_layout_login).setOnClickListener(guillotineMenuClickListener)
         guillotineMenu.findViewById(R.id.guillotine_layout_license).setOnClickListener(guillotineMenuClickListener)
         rootLayout.addView(guillotineMenu)
-        GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), imageHamburger)
+        guillotineAnimation = GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), imageHamburger)
                 .setStartDelay(RIPPLE_DURATION)
                 .setActionBarViewForAnimation(toolbar)
                 .setClosedOnStart(true)
@@ -68,5 +70,13 @@ public class MainActivity : BaseActivity() {
             // コンテンツがあれば表示する
             startActivity(it)
         }
+    }
+
+    override fun onBackPressed() {
+        if (!(guillotineAnimation?.isClosing ?: true)) {
+            guillotineAnimation?.close()
+            return
+        }
+        super.onBackPressed()
     }
 }
