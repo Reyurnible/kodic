@@ -6,7 +6,7 @@
     <color name="primary_light">#B2EBF2</color>
     <!-- Primary Action Color -->
     <color name="primary_action_disable">#8814ACCF</color>
-    <color name="primary_action_pressed">#3A64C5</color>
+    <color name="primary_action_pressed">@color/primary_dark</color>
     <!-- Accent -->
     <color name="accent">#FF9800</color>
     <!-- Accent Action Color -->
@@ -23,6 +23,11 @@
 
     <!-- Divider -->
     <color name="divider">#B6B6B6</color>
+
+    <!-- Guillotine -->
+    <color name="guillotine_background">@color/primary</color>
+    <color name="guillotine_background_dark">@color/primary_dark</color>
+    <color name="guillotine_selected_item_color">@color/accent</color>
 
     <!-- mataterial colors -->
     <array name="material_colors">
