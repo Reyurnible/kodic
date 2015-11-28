@@ -17,7 +17,6 @@ import butterknife.bindView
 import com.bumptech.glide.Glide
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.activity.DetailsActivity
-import com.hosshan.android.kodic.component.adapter.ArrayRecyclerAdapter
 import com.hosshan.android.kodic.component.fragment.translate.TranslateFragment
 import com.hosshan.android.kodic.model.Project
 import com.hosshan.android.kodic.util.ColorUtil
@@ -62,7 +61,7 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
     }
 
     fun createIconName(text: String): String {
-        if (Regex("[A-Z]+").matchAll(text, 0).count() > 0) {
+        if (Regex("[A-Z]+").findAll(text, 0).count() > 0) {
             return Regex("[0-9a-z]+").replace(text, "")
         } else {
             return text.substring(0).toUpperCase()

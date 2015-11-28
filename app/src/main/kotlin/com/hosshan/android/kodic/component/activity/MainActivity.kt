@@ -1,23 +1,28 @@
 package com.hosshan.android.kodic.component.activity
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.Toolbar
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
 import butterknife.bindView
 import com.hosshan.android.kodic.R
-import com.hosshan.android.kodic.component.fragment.drawer.DrawerFragment
 import com.hosshan.android.kodic.component.fragment.project.ProjectListFragment
-import com.mxn.soul.flowingdrawer_core.FlowingView
-import com.mxn.soul.flowingdrawer_core.LeftDrawerLayout
+import com.yalantis.guillotine.animation.GuillotineAnimation
 
 /**
  * Created by shunhosaka on 15/09/05.
  */
 public class MainActivity : BaseActivity() {
 
-    val drawerLayout: LeftDrawerLayout by bindView(R.id.main_drawerlayout)
+    companion object {
+        private const val RIPPLE_DURATION: Long = 250;
+    }
+
+    val rootLayout: FrameLayout by bindView(R.id.main_layout_root)
     val toolbar: Toolbar by bindView(R.id.main_toolbar)
-    val flowingView: FlowingView by bindView(R.id.main_flowingview)
+    val imageHamburger: ImageView by bindView(R.id.main_imageview_hamburger)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,28 +30,18 @@ public class MainActivity : BaseActivity() {
 
         // Setting Toolbar
         setSupportActionBar(toolbar)
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.primary_text_inverse))
-        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
-        toolbar.setNavigationOnClickListener {
-            if (drawerLayout.isShownMenu) drawerLayout.closeDrawer() else drawerLayout.openDrawer()
-        }
+        supportActionBar.title = null
 
-        val menuFragment: DrawerFragment = DrawerFragment.newInstance()
-        // Drawerのメニューをセットする
-        setContentFragment(R.id.main_layout_container_menu, menuFragment)
+        // Setting GuillotineMenu
+        val guillotineMenu: View = LayoutInflater.from(this).inflate(R.layout.view_guillotine, null)
+        rootLayout.addView(guillotineMenu)
+        GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), imageHamburger)
+                .setStartDelay(RIPPLE_DURATION)
+                .setActionBarViewForAnimation(toolbar)
+                .setClosedOnStart(true)
+                .build()
 
-        drawerLayout.setFluidView(flowingView)
-        drawerLayout.setMenuFragment(menuFragment)
-
-        // コンテンツをセットする
+        // Setting Content Fragment
         setContentFragment(R.id.main_layout_container, ProjectListFragment.newInstance())
-    }
-
-    override fun onBackPressed() {
-        if (drawerLayout.isShownMenu) {
-            drawerLayout.closeDrawer()
-            return ;
-        }
-        super.onBackPressed()
     }
 }
