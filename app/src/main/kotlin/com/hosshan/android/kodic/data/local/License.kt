@@ -5,7 +5,6 @@ package com.hosshan.android.kodic.data.local
  */
 enum class License(val title: String, val link: String) {
     Dagger("Dagger", "https://github.com/google/dagger"),
-    Calligraphy("Calligraphy", "https://github.com/chrisjenx/Calligraphy"),
     FlowingDrawer("FlowingDrawer", "https://github.com/mxn21/FlowingDrawer"),
     Glide("Glide", "https://github.com/bumptech/glide"),
     GlideTransformations("GlideTransformations", "https://github.com/wasabeef/glide-transformations"),
