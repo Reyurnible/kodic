@@ -12,6 +12,7 @@ import com.hosshan.android.kodic.component.fragment.license.LicenseFragment
 import com.hosshan.android.kodic.component.fragment.login.LoginFragment
 import com.hosshan.android.kodic.component.fragment.project.ProjectListFragment
 import com.yalantis.guillotine.animation.GuillotineAnimation
+import com.yalantis.guillotine.interfaces.GuillotineListener
 
 /**
  * Created by shunhosaka on 15/09/05.
@@ -27,6 +28,7 @@ public class MainActivity : BaseActivity() {
     val imageHamburger: ImageView by bindView(R.id.main_imageview_hamburger)
 
     private var guillotineAnimation: GuillotineAnimation? = null
+    private var isGuillotineMenuOpend: Boolean = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,14 @@ public class MainActivity : BaseActivity() {
                 .setStartDelay(RIPPLE_DURATION)
                 .setActionBarViewForAnimation(toolbar)
                 .setClosedOnStart(true)
+                .setGuillotineListener(object : GuillotineListener {
+                    override fun onGuillotineClosed() {
+                        isGuillotineMenuOpend = false;
+                    }
+                    override fun onGuillotineOpened() {
+                        isGuillotineMenuOpend = true;
+                    }
+                })
                 .build()
 
         // Setting Content Fragment
@@ -73,7 +83,7 @@ public class MainActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (!(guillotineAnimation?.isClosing ?: true)) {
+        if (isGuillotineMenuOpend) {
             guillotineAnimation?.close()
             return
         }

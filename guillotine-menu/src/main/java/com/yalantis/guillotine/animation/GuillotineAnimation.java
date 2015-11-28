@@ -60,18 +60,12 @@ public class GuillotineAnimation {
         }
     }
 
-    public void close() {
+    public boolean close() {
         if (!isClosing) {
             mClosingAnimation.start();
+            return true;
         }
-    }
-
-    public boolean isOpening() {
-        return isOpening;
-    }
-
-    public boolean isClosing() {
-        return isClosing;
+        return false;
     }
 
     private void setUpOpeningView(final View openingView) {
