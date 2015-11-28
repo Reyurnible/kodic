@@ -54,8 +54,8 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
         holder?.owner?.text = item.owner.name
         holder?.itemView?.setOnClickListener {
             activity?.let {
-                val intent: Intent = DetailsActivity.createIntent(activity!!, item.name, TranslateFragment::class.java, TranslateFragment.createArg(item.id))
-                activity?.startActivity(intent)
+                val intent: Intent = DetailsActivity.createIntent(it, item.name, TranslateFragment::class.java, TranslateFragment.createArg(item.id))
+                it.startActivity(intent)
             }
         }
     }
@@ -69,7 +69,7 @@ public class ProjectAdapter(activity: Activity, objects: ArrayList<Project> = Ar
     }
 
     fun createDrawable(context: Context?, text: String): Drawable? {
-        return createDrawable(context, text.length() % MATERIAL_COLOR_SIZE)
+        return createDrawable(context, text.length % MATERIAL_COLOR_SIZE)
     }
 
     fun createDrawable(context: Context?, index: Int): Drawable? {
