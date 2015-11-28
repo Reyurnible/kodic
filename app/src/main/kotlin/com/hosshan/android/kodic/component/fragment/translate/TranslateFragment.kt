@@ -10,21 +10,19 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import butterknife.bindView
-import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
 import com.hosshan.android.kodic.R
 import com.hosshan.android.kodic.component.adapter.TranslatedTextAdapter
 import com.hosshan.android.kodic.component.fragment.BaseFragment
-import com.hosshan.android.kodic.data.realm.toTranslatedText
+import com.hosshan.android.kodic.data.realm.TranslatedHistory
 import com.hosshan.android.kodic.model.TranslatedText
 import com.hosshan.android.kodic.store.codic.CodicRequestSubscriber
 import com.hosshan.android.kodic.store.codic.EngineStore
 import com.hosshan.android.kodic.store.realm.TranslatedStore
 import com.hosshan.android.kodic.util.addComposite
-import retrofit.RetrofitError
 import rx.Observable
-import rx.Subscriber
 import rx.schedulers.Schedulers
+import java.util.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -149,9 +147,15 @@ public class TranslateFragment : BaseFragment() {
                     })
         }
 
-        translatedStore.getTranslatedHistory(projectId) .map {
-                adapter.add(it.toTranslatedText())
+        translatedStore.getTranslatedHistory(projectId).map {
+            adapter.add(it.toTranslatedText())
         }
     }
 
 }
+
+public fun TranslatedHistory.toTranslatedText(): TranslatedText =
+        TranslatedText(this.successful,
+                this.text,
+                this.translatedText,
+                ArrayList())

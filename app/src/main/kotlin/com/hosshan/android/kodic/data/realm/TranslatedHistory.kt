@@ -17,9 +17,3 @@ public open class TranslatedHistory(
          public open var text: String = "",
          public open var translatedText: String = ""
 ) : RealmObject()
-
-public fun TranslatedHistory.toTranslatedText(): TranslatedText =
-        TranslatedText(this.successful,
-                this.text,
-                this.translatedText,
-                ArrayList())
