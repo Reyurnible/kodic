@@ -47,9 +47,6 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
     sourceSets {
-        main {
-            assets.srcDirs = ['assets']
-        }
         main.java.srcDirs += 'src/main/kotlin'
         debug.java.srcDirs += 'src/debug/kotlin'
         release.java.srcDirs += 'src/release/kotlin'
@@ -91,8 +88,6 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0.1'
     kapt 'com.google.dagger:dagger-compiler:2.0.1'
     provided 'org.glassfish:javax.annotation:10.0-b28'
-    // Font
-    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     // Flowing Drawer
     compile 'com.mxn.soul:flowingdrawer-core:1.2.0'
     // Glide
