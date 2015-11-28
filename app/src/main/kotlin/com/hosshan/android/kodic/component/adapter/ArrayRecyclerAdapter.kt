@@ -29,7 +29,7 @@ public abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val 
 
     public fun insertAll(index: Int, items: Collection<T>?) {
         items?.let {
-            this.items.addAll(index, items!!)
+            this.items.addAll(index, items)
             notifyDataSetChanged()
         }
     }
