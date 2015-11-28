@@ -7,7 +7,7 @@ import com.hosshan.android.kodic.R
  * Created by shunhosaka on 2015/10/29.
  */
 enum class DrawerMenu(@StringRes val title: Int) {
-    Login(R.string.drawer_menu_login),
-    Licence(R.string.drawer_menu_license)
+    Login(R.string.guillotine_menu_login),
+    Licence(R.string.guillotine_menu_license)
     ;
 }

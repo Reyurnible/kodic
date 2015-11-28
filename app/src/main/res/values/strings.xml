@@ -10,10 +10,9 @@
     <string name="title_translate">Translate</string>
 
     <!-- Drawer -->
-    <string name="drawer_open"></string>
-    <string name="drawer_close"></string>
-    <string name="drawer_menu_license">@string/title_license</string>
-    <string name="drawer_menu_login">@string/title_login</string>
+    <string name="guillotine_title">MENU</string>
+    <string name="guillotine_menu_license">@string/title_license</string>
+    <string name="guillotine_menu_login">@string/title_login</string>
 
     <!-- License -->
 

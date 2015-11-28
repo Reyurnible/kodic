@@ -148,14 +148,14 @@ public class TranslateFragment : BaseFragment() {
         }
 
         translatedStore.getTranslatedHistory(projectId).map {
-            adapter.add(it.toTranslatedText())
+            adapter.add(toTranslatedText(it))
         }
     }
 
-}
+    private fun toTranslatedText(translatedHistory: TranslatedHistory): TranslatedText =
+            TranslatedText(translatedHistory.successful,
+                    translatedHistory.text,
+                    translatedHistory.translatedText,
+                    ArrayList())
 
-public fun TranslatedHistory.toTranslatedText(): TranslatedText =
-        TranslatedText(this.successful,
-                this.text,
-                this.translatedText,
-                ArrayList())
+}

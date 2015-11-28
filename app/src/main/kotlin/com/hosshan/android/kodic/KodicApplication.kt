@@ -13,7 +13,7 @@ import kotlin.properties.Delegates
 public class KodicApplication : DaggerApplication() {
     companion object {
         private const val CANARO_EXTRA_BOLD_PATH = "fonts/canaro_extra_bold.otf"
-        @JvmStatic public var canaroExtraBold: Typeface by Delegates.notNull()
+        public var canaroExtraBold: Typeface by Delegates.notNull()
     }
 
     override fun onCreate() {
@@ -31,6 +31,6 @@ public class KodicApplication : DaggerApplication() {
     }
 
     private fun initTypeface() {
-        canaroExtraBold = Typeface.createFromAsset(assets, CANARO_EXTRA_BOLD_PATH)
+        canaroExtraBold = Typeface.createFromAsset(getAssets(), CANARO_EXTRA_BOLD_PATH)
     }
 }

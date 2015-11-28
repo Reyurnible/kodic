@@ -8,6 +8,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import butterknife.bindView
 import com.hosshan.android.kodic.R
+import com.hosshan.android.kodic.component.fragment.license.LicenseFragment
+import com.hosshan.android.kodic.component.fragment.login.LoginFragment
 import com.hosshan.android.kodic.component.fragment.project.ProjectListFragment
 import com.yalantis.guillotine.animation.GuillotineAnimation
 
@@ -34,6 +36,8 @@ public class MainActivity : BaseActivity() {
 
         // Setting GuillotineMenu
         val guillotineMenu: View = LayoutInflater.from(this).inflate(R.layout.view_guillotine, null)
+        guillotineMenu.findViewById(R.id.guillotine_layout_login).setOnClickListener(guillotineMenuClickListener)
+        guillotineMenu.findViewById(R.id.guillotine_layout_license).setOnClickListener(guillotineMenuClickListener)
         rootLayout.addView(guillotineMenu)
         GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), imageHamburger)
                 .setStartDelay(RIPPLE_DURATION)
@@ -43,5 +47,26 @@ public class MainActivity : BaseActivity() {
 
         // Setting Content Fragment
         setContentFragment(R.id.main_layout_container, ProjectListFragment.newInstance())
+    }
+
+    private val guillotineMenuClickListener = View.OnClickListener {
+        when (it.id) {
+            R.id.guillotine_layout_login ->
+                DetailsActivity.createIntent(
+                        this,
+                        "",
+                        LoginFragment::class.java,
+                        LoginFragment.createArgument())
+            R.id.guillotine_layout_license ->
+                DetailsActivity.createIntent(
+                        this,
+                        getString(R.string.title_license),
+                        LicenseFragment::class.java,
+                        LicenseFragment.createArgument())
+            else -> null
+        }?.let {
+            // コンテンツがあれば表示する
+            startActivity(it)
+        }
     }
 }
