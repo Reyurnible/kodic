@@ -3,6 +3,7 @@ package com.hosshan.android.kodic.component.fragment.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,6 +52,8 @@ public class LoginFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         // Titleをセットしない
         activity?.actionBar?.title = ""
+
+
         // TokenのStoreから値を取り出す
         tokenStore.getToken()
                 .addComposite(compositeSubscription)
@@ -58,13 +61,19 @@ public class LoginFragment : BaseFragment() {
                 .subscribe {
                     editText.setText(it?.token)
                 }
-
         button.setOnClickListener {
             tokenStore.setToken(Token(editText.text.toString()))
-
-            val intent: Intent = Intent(activity, MainActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+                    .addComposite(compositeSubscription)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        if (it) {
+                            val intent: Intent = Intent(activity, MainActivity::class.java)
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
+                        } else {
+                            Snackbar.make(button, R.string.login_save_failed, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
         }
     }
 }

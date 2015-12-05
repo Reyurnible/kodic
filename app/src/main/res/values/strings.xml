@@ -20,6 +20,7 @@
     <string name="login_title">Auth Token</string>
     <string name="login_edittext_hint">Write your token...</string>
     <string name="login_button">SAVE</string>
+    <string name="login_save_failed">Failed save token.</string>
 
     <!-- Project -->
 
