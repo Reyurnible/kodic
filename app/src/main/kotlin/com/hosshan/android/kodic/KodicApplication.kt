@@ -21,7 +21,7 @@ public class KodicApplication : DaggerApplication() {
         Timber.plant(Timber.DebugTree())
 
         Hawk.init(this)
-                .setEncryptionMethod(HawkBuilder.EncryptionMethod.MEDIUM)
+                .setEncryptionMethod(HawkBuilder.EncryptionMethod.NO_ENCRYPTION)
                 .setStorage(HawkBuilder.newSharedPrefStorage(this))
                 .setPassword("kodic")
                 .setLogLevel(if (BuildConfig.DEBUG) LogLevel.FULL else LogLevel.NONE)
