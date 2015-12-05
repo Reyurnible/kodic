@@ -17,6 +17,8 @@ import com.hosshan.android.kodic.component.fragment.BaseFragment
 import com.hosshan.android.kodic.data.local.Token
 import com.hosshan.android.kodic.store.local.TokenStore
 import com.hosshan.android.kodic.util.addComposite
+import com.jakewharton.rxbinding.view.enabled
+import com.jakewharton.rxbinding.widget.textChanges
 import javax.inject.Inject
 
 /**
@@ -52,7 +54,11 @@ public class LoginFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         // Titleをセットしない
         activity?.actionBar?.title = ""
-
+        editText.textChanges()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    button.isEnabled = it?.isNotEmpty() ?: false
+                }
 
         // TokenのStoreから値を取り出す
         tokenStore.getToken()
@@ -65,15 +71,23 @@ public class LoginFragment : BaseFragment() {
             tokenStore.setToken(Token(editText.text.toString()))
                     .addComposite(compositeSubscription)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        if (it) {
-                            val intent: Intent = Intent(activity, MainActivity::class.java)
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(intent)
-                        } else {
-                            Snackbar.make(button, R.string.login_save_failed, Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
+                    .subscribe(
+                            { result: Boolean ->
+                                if (result) {
+                                    val intent: Intent = Intent(activity, MainActivity::class.java)
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                    startActivity(intent)
+                                } else {
+                                    Snackbar.make(button, R.string.login_save_failed, Snackbar.LENGTH_SHORT).show();
+                                }
+                            },
+                            { error: Throwable ->
+                                error.printStackTrace()
+                            },
+                            {
+
+                            }
+                    )
         }
     }
 }
