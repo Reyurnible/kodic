@@ -111,6 +111,10 @@ dependencies {
     compile "com.jakewharton.rxbinding:rxbinding-support-v4:$rxBindingVersion"
     compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rxBindingVersion"
     compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$rxBindingVersion"
     compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.0'
     // Realm
     compile 'io.realm:realm-android:0.84.0'
