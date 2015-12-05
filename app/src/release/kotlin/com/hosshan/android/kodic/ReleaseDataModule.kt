@@ -3,7 +3,7 @@ package com.hosshan.android.kodic
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers
+import android.util.Log
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import com.google.gson.Gson
 import com.hosshan.android.kodic.data.local.Token
@@ -22,8 +22,6 @@ import retrofit.RequestInterceptor
 import retrofit.RestAdapter
 import retrofit.client.OkClient
 import retrofit.converter.GsonConverter
-import rx.Subscriber
-import rx.schedulers.Schedulers
 import javax.inject.Named
 
 /**
@@ -54,20 +52,10 @@ public class ReleaseDataModule {
     fun provideGson(): Gson = GsonUtil.getInstance()
 
     @Provides
-    fun provideRequestInterceptor(tokenStore: TokenStore): RequestInterceptor = RequestInterceptor { request ->
-        tokenStore.getToken()
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Subscriber<Token?>() {
-                    override fun onCompleted() { }
-                    override fun onNext(token: Token?) {
-                        token?.let {
-                            request.addHeader("Authorization", "Bearer " + "");
-                        }
-                    }
-                    override fun onError(e: Throwable?) { }
-                });
-    }
+    fun provideRequestInterceptor(tokenStore: TokenStore): RequestInterceptor =
+            RequestInterceptor {
+                it.addHeader("Authorization", "Bearer " + tokenStore.getTokenNonObservable()?.token)
+            }
 
     @Provides
     fun provideRestAdapter(@Named("Api") client: OkHttpClient, endpoint: Endpoint, gson: Gson, requestInterceptor: RequestInterceptor): RestAdapter =
@@ -75,8 +63,8 @@ public class ReleaseDataModule {
                     .setLogLevel(RestAdapter.LogLevel.NONE)
                     .setClient(OkClient(client))
                     .setEndpoint(endpoint)
-                    .setConverter(GsonConverter(gson))
                     .setRequestInterceptor(requestInterceptor)
+                    .setConverter(GsonConverter(gson))
                     .build()
 
     @Provides
